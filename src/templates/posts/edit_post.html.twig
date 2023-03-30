@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/modifpost.css">
+{% endblock %}
+{% block title %}Les posts{% endblock %}
+
+{% block body %}
+    <div>
+    <h2 >Création d'un post</h2>
+    </div>
+    <div class="contenu">
+
+        <article class="post">
+            <form action="">
+                <h2>Ajouter un post</h2>
+                <input type="texte" placeholder="Un titre">
+                <input type="texte" placeholder="Un chapô">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Entrer ici le contenu de votre post ...."></textarea>
+                <input type="submit" value="Poster">
+            </form>
+        </article>
+        </div>
+{% endblock %}

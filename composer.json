@@ -1,0 +1,18 @@
+{
+    "name": "gigondan/framework",
+    "autoload":{
+        "psr-4":{
+
+            "Controllers\\": "src/controllers/",
+            "Core\\": "src/core/"
+
+        },
+        "files": [
+            "src/routes/routes.php"
+        ]
+    },
+    "require": {
+        "twig/twig": "^3.5",
+        "symfony/dotenv": "^5.4"
+    }
+}

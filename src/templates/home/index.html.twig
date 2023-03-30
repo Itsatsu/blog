@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/index.css">
+{% endblock %}
+{% block body %}
+
+    <div>
+        <h2 >Je suis Eric Gigondan</h2>
+    </div>
+    <div class="contenu">
+        <div class="post">
+        <img src="photo.jpg" alt="Photo de profil">
+        <p>Je Développe, Déploie et Maintiens les applications et leurs serveurs </p>
+        <a href="cv.pdf" download><button>Télécharger mon CV</button></a>
+        </div>
+        <form action="#" method="post">
+
+            <input type="text" id="nom" name="nom"  placeholder="Nom et prénom" required>
+
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <textarea id="message" name="message" rows="5" placeholder="Entrer votre message ici ..." required></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
+        <p>Retrouvez-moi sur :</p>
+        <ul>
+            <li><a href="https://github.com/votre-nom">GitHub</a></li>
+            <!-- Ajouter d'autres liens ici -->
+        </ul>
+    </div>
+{% endblock %}

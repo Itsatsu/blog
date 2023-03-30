@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum-{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css"  href="/public/assets/style/style.css" >
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<img src="/public/assets/images/blabla_users.png" alt="" class="perso">
+<div class="container">
+    <div class="elipse1"></div>
+    <div class="elipse2"></div>
+    <div class="elipse3"></div>
+    <div class="fond-gris">
+    {% block body %}{% endblock %}
+    </div>
+</div>
+<footer><!-- Contenu de mon footer --></footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends '/security/base.html.twig' %}
+{% block title %}Connexion{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/login.css">
+{% endblock %}
+{% block body %}
+        <h1>Connexion</h1>
+        <p>Vous n'avez pas de compte ?  <a href="signup">S'enregister</a></p>
+
+
+        <form action="">
+            <input type="email" name="" id="email" placeholder="Email">
+            <input type="password" name="" id="password" placeholder="**********">
+            <input type="submit" name="" id="sub" value="Connexion">
+        </form>
+{% endblock %}
