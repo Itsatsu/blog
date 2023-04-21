@@ -12,32 +12,27 @@ class Route
     {
         $routes = new Request($path, $class, $action);
 
-        if(filter_input(INPUT_SERVER, 'REQUEST_METHOD'))
+        if($_SERVER['REQUEST_METHOD'] === 'GET')
         {
             self::$request['GET'][] = $routes;
             return $routes;
-        }else{
+        }else if($_SERVER['REQUEST_METHOD'] === 'POST'){
             self::$request['POST'][] = $routes;
             return $routes;
         }
     }
 
-
     public static function run()
     {
-        foreach (self::$request[$_SERVER['REQUEST_METHOD']] as $route) {
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-            if ($route->match(filter_input(INPUT_GET,'url'))) {
-
-
-
+        foreach (self::$request[$requestMethod] as $route) {
+            if ($route->match($_SERVER['REQUEST_URI'])) {
                 $route->execute();
-                break;
-
-            }else{
-                header('HTTP/1.0 404 ');
-
+                return;
             }
         }
+
+        header('HTTP/1.0 404 Not Found');
     }
 }
