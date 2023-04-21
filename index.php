@@ -3,6 +3,7 @@
 require_once "vendor/autoload.php";
 require_once "src/controllers/HomeController.php";
 require_once "src/controllers/PostController.php";
+require_once "src/config.php";
 use Core\Route;
 $setup = 'setup.php';
 

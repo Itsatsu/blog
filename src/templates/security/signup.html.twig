@@ -5,15 +5,23 @@
 {% endblock %}
 {% block body %}
     <h1>Création d'un compte</h1>
-    <p>Vous avez un compte ?  <a href="login">Se connecter</a></p>
+    <p>Vous avez un compte ? <a href="login">Se connecter</a></p>
 
+    {% if errors is defined %}
+        {% for key, value in errors %}
+            <p class="alert {% if key == 'valide' %}alert-success{% else %}alert-danger{% endif %}">
 
-    <form action="">
-        <input type="text" name="" id="pseudo" placeholder="Pseudo">
-        <input type="email" name="" id="email" placeholder="Email">
-        <input type="text" name="" id="pays" placeholder="Pays">
-        <input type="password" name="" id="pass" placeholder="Mot de passe">
-        <input type="password" name="" id="confirmpass" placeholder="Confirmation du mot de passe">
-        <input type="submit" name="" id="sub" value="Connexion">
+                {{ value }}
+
+            </p>
+        {% endfor %}
+    {% endif %}
+    <form method="POST">
+        <input type="text" name="signup[pseudo]" id="pseudo" placeholder="Pseudo">
+        <input type="email" name="signup[email]" id="email" placeholder="Email">
+        <input type="text" name="signup[pays]" id="pays" placeholder="Pays">
+        <input type="password" name="signup[password]" id="password" placeholder="Mot de passe">
+        <input type="password" name="signup[confirmpass]" id="confirmpass" placeholder="Confirmation du mot de passe">
+        <input type="submit" name="signup[submit]" id="sub" value="Connexion">
     </form>
 {% endblock %}
