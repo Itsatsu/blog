@@ -11,6 +11,7 @@ class Request
     private $class;
     private $params = [];
     private $request;
+    private $data;
 
     public function __Construct(string $path, $class, string $action)
     {
@@ -18,7 +19,6 @@ class Request
         $this->path = trim($path, '/');
         $this->action = $action;
         $this->class = $class;
-
     }
 
     public function match($url)
@@ -42,6 +42,7 @@ class Request
 
     public function execute()
     {
+
         $controller = $this->class;
         $controller = new $controller();
 
@@ -52,4 +53,5 @@ class Request
             return isset($this->params) ? $controller->$method($this->request, implode($this->params)) : $controller->$method($this->request);
         }
     }
+
 }
