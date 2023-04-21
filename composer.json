@@ -4,8 +4,10 @@
         "psr-4":{
 
             "Controllers\\": "src/controllers/",
-            "Core\\": "src/core/"
-
+            "Core\\": "src/core/",
+            "Entity\\": "src/entity/",
+            "Repository\\": "src/repository/",
+            "Validators\\": "src/validators/"
         },
         "files": [
             "src/routes/routes.php"
