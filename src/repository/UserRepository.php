@@ -69,4 +69,15 @@ class UserRepository
         $stmt->execute([$user->getId()]);
         return $stmt->rowCount();
     }
+
+    public function findByToken(mixed $token)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE token = ?');
+        $stmt->execute([$token]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+        return new User($data['email'], $data['pseudo'], $data['country']);
+    }
 }

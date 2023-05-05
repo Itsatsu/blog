@@ -3,10 +3,13 @@
 namespace Core;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 use Repository\ConfigurationRepository;
 use Symfony\Component\Dotenv\Dotenv;
 
-class mail
+
+class Mail
 {
     public function __construct()
     {
@@ -25,21 +28,23 @@ class mail
             $host = $_ENV['DB_HOST'];
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
-            $mail->Host       = $_ENV['MAILER_URL'];
             $mail->SMTPAuth   = true;
+            $mail->Host       = $_ENV['MAILER_URL'];
             $mail->Username   = $_ENV['MAILER_LOGIN'];
             $mail->Password   = $_ENV['MAILER_PASSWORD'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
             $mail->Port       = $_ENV['MAILER_PORT'];
 
             //Recipients
             $mail->setFrom($_ENV['MAILER_FROM'], $configuration->getFullname());
             $mail->addAddress($user->getEmail(), $user->getPseudo());     //Add a recipient//Name is optional
-            //Attachments
-            $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-            $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
-            //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $subject;
             $mail->Body    = $message;
