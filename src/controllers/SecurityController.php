@@ -5,6 +5,7 @@ namespace controllers;
 use Core\Controller;
 use Core\HttpRequest;
 use Core\Request;
+use Core\Session;
 use Entity\User;
 use Repository\UserRepository;
 use Validators\UserValidator;
@@ -13,16 +14,21 @@ class SecurityController extends Controller
 {
     public function login()
     {
+        $session = new Session();
         $request = new HttpRequest();
-        if ($request->get('connection') != null)
-        {
+        if ($request->get('connection') != null) {
             $connection = $request->get('connection');
-            $user = new User($connection['email'],
-                $connection['password']);
+            //$user = new User($connection['email'],
+            //    $connection['password']);
+
+
         }
 
 
-        return $this->view('/security/login.html.twig');
+        return $this->view('/security/login.html.twig', [
+            'message' => $session->getMessage(),
+           // 'errors' =>$userValidator->getErrors()
+        ]);
 
     }
 
@@ -33,27 +39,32 @@ class SecurityController extends Controller
         if ($request->get('signup') != null) {
             $signup = $request->get('signup');
 
-            $user = new User($signup['email'],
+            $user = new User(
+                $signup['email'],
+                $signup['password'],
                 $signup['pseudo'],
                 $signup['pays'],
-                $signup['password']);
+                $signup['confirmpass'],
+            );
 
             $userValidator = new UserValidator($user);
-            if ($userValidator->validateRegister($signup['confirmpass']) === true) {
+
+
+            if ($userValidator->validateRegister()) {
                 $userRepository = new UserRepository();
                 $userRepository->create($user);
-                return $this->view('/security/login.html.twig', [
-                    'errors' => $userValidator->getErrors()]);
-
-            }else{
-
-                return $this->view('/security/signup.html.twig', [
-                    'errors' => $userValidator->getErrors()]);
-
+                $mailer = new Mail();
+                $session = new Session();
+                $session->setMessage('success', 'Votre compte a bien été créé. Vérifier votre boite mail pour activer votre compte.');
+                header('Location: /login');
+                exit();
             }
+            return $this->view('/security/signup.html.twig', [
+                'errors' => $userValidator->getErrors()]);
 
         }
         return $this->view('/security/signup.html.twig');
+
     }
 }
 
