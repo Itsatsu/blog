@@ -9,13 +9,13 @@
 
     {% if errors is defined %}
         {% for key, value in errors %}
-            <p class="alert {% if key == 'valide' %}alert-success{% else %}alert-danger{% endif %}">
-
+            <p class="alert alert-{{key}}">
                 {{ value }}
-
             </p>
         {% endfor %}
     {% endif %}
+
+
     <form method="POST">
         <input type="text" name="signup[pseudo]" id="pseudo" placeholder="Pseudo">
         <input type="email" name="signup[email]" id="email" placeholder="Email">
