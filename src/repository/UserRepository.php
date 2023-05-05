@@ -17,8 +17,9 @@ class UserRepository
 
     public function create(User $user)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO user (email, pseudo, country, password) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword()]);
+        $user->setToken();
+        $stmt = $this->pdo->prepare('INSERT INTO user (email, pseudo, country, password, token) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(), $user->getToken()]);
         return $this->pdo->lastInsertId();
     }
 
@@ -31,6 +32,17 @@ class UserRepository
             return null;
         }
         return new User($data['email'], $data['pseudo'], $data['country'], $data['password']);
+    }
+
+    public function findIsActive($id)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id = ? and is_active = 1');
+        $stmt->execute([$id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return false;
+        }
+        return true;
     }
 
     public function findByEmail($email)

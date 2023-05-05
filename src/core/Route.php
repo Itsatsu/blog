@@ -3,7 +3,7 @@
 namespace Core;
 
 use Core\Request;
-
+use Core\Session;
 class Route
 {
     private static $request;
@@ -24,6 +24,17 @@ class Route
 
     public static function run()
     {
+        $session = new Session();
+
+        if($session->getMessage() != null ){
+            if($session->getMessage()['see'] == 0 ) {
+                $session->seeMessage();
+            }else{
+                $session->deleteMessage();
+            }
+        }
+
+
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
         foreach (self::$request[$requestMethod] as $route) {
