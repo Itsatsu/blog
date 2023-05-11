@@ -10,6 +10,7 @@ class User
     private $password_confirm;
     private $token;
     private $is_active;
+    private $id;
 
     public function __construct($email, $password, $pseudo = null, $country = null, $password_confirm = null,)
     {
@@ -20,6 +21,17 @@ class User
         $this->country = $country;
         $this->password_confirm = $password_confirm;
 
+    }
+
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getEmail()
@@ -85,7 +97,7 @@ class User
 
     public function setToken()
     {
-        $this->token = uniqid();
+        $this->token = sha1(uniqid());
     }
 
     public function getIsActive()
@@ -97,5 +109,6 @@ class User
     {
         $this->is_active = true;
     }
+
 
 }

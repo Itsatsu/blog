@@ -11,7 +11,6 @@ class Route
     public static function meth(string $path, $class, string $action)
     {
         $routes = new Request($path, $class, $action);
-
         if($_SERVER['REQUEST_METHOD'] === 'GET')
         {
             self::$request['GET'][] = $routes;
@@ -33,15 +32,15 @@ class Route
                 $session->deleteMessage();
             }
         }
-
-
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
         foreach (self::$request[$requestMethod] as $route) {
+
             if ($route->match($_SERVER['REQUEST_URI'])) {
                 $route->execute();
-                return;
+                exit();
             }
+
         }
 
         header('HTTP/1.0 404 Not Found');

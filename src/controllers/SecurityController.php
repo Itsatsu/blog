@@ -55,7 +55,9 @@ class SecurityController extends Controller
                 $userRepository = new UserRepository();
                 $userRepository->create($user);
                 $mail = new Mail();
-                $mail->send($user, 'activation', 'Activation de votre compte');
+                $mail->send($user, 'activation', '/mail/activation.html.twig', [
+                        'user' => $user]
+                );
                 $session = new Session();
                 $session->setMessage('success', 'Votre compte a bien été créé. Vérifier votre boite mail pour activer votre compte.');
                 header('Location: /login');
@@ -69,31 +71,29 @@ class SecurityController extends Controller
 
     }
 
-    public function activation()
+    public function activation($params)
     {
-        $request = new HttpRequest();
-        if ($request->get('token') != null) {
-            $token = $request->get('token');
+        $session = new Session();
+        if (isset($params['token'])) {
+            $token = $params['token'];
+
             $userRepository = new UserRepository();
 
             if ($userRepository->findByToken($token)) {
                 $user = $userRepository->findByToken($token);
-                $user->setIsActive(1);
-                $session = new Session();
+                $user->setIsActive();
+                $userRepository->update($user);
                 $session->setMessage('success', 'Votre compte a bien été Activé. Vous pouvez vous connecter.');
-                header('Location: /login');
+                header('Location:/login');
                 exit();
             }
-            $session = new Session();
-            $session->setMessage('error', "Ce token n'existe pas.");
-            header('Location:/');
+
+            //$session->setMessage('error', "Ce token n'existe pas.");
+            header('Location:/login');
         }
 
-
-        return $this->view('/security/login.html.twig', [
-            'message' => $session->getMessage(),
-            // 'errors' =>$userValidator->getErrors()
-        ]);
+        //$session->setMessage('error', "Ce token n'existe pas.");
+        header('Location:/login');
 
     }
 }

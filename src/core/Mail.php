@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Repository\ConfigurationRepository;
 use Symfony\Component\Dotenv\Dotenv;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 
 class Mail
@@ -16,17 +18,22 @@ class Mail
 
     }
 
-    public function send($user, $subject, $message)
+    public function send($user, $subject, $template, $params = null,)
     {
         $mail = new PHPMailer(true);
+        $loader = new FilesystemLoader('./src/templates/');
+        $twig = new Environment($loader);
+
+        $template = $twig->load($template);
+        $content = $template->render($params);
+
 
         try {
             $dotenv = new Dotenv();
             $dotenv->load(__DIR__.'../../../.env');
             $configurationRepository = new ConfigurationRepository();
             $configuration = $configurationRepository->findById(1);
-            $host = $_ENV['DB_HOST'];
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
             $mail->SMTPAuth   = true;
             $mail->Host       = $_ENV['MAILER_URL'];
@@ -39,7 +46,8 @@ class Mail
                     'allow_self_signed' => true
                 )
             );
-            $mail->Port       = $_ENV['MAILER_PORT'];
+
+            $mail->Port= $_ENV['MAILER_PORT'];
 
             //Recipients
             $mail->setFrom($_ENV['MAILER_FROM'], $configuration->getFullname());
@@ -47,7 +55,7 @@ class Mail
 
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $message;
+            $mail->Body    = $content;
 
             $mail->send();
             echo 'Message has been sent';

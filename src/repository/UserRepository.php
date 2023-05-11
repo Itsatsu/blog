@@ -1,4 +1,5 @@
 <?php
+
 namespace Repository;
 
 
@@ -10,7 +11,8 @@ class UserRepository
 {
     private $pdo;
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new Database();
         $this->pdo = $database->getPDO();
     }
@@ -23,6 +25,34 @@ class UserRepository
         return $this->pdo->lastInsertId();
     }
 
+
+    public function update(User $user)
+    {
+        $stmt = $this->pdo->prepare('UPDATE user SET email = ?, pseudo = ?, country = ?, password = ?, is_active = ? WHERE id = ?');
+        $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(), $user->getId(), $user->getIsActive()]);
+        return $stmt->rowCount();
+    }
+
+    public function delete(User $user)
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM user WHERE id = ?');
+        $stmt->execute([$user->getId()]);
+        return $stmt->rowCount();
+    }
+
+    public function findByToken(mixed $token)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE token = ?');
+        $stmt->execute([$token]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+        $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
+        $user->setId($data['id']);
+        return $user;
+    }
+
     public function findById($id)
     {
         $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id = ?');
@@ -31,7 +61,9 @@ class UserRepository
         if (!$data) {
             return null;
         }
-        return new User($data['email'], $data['pseudo'], $data['country'], $data['password']);
+        $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
+        $user->setId($data['id']);
+        return $user;
     }
 
     public function findIsActive($id)
@@ -53,31 +85,9 @@ class UserRepository
         if (!$data) {
             return null;
         }
-        return new User($data['email'], $data['pseudo'], $data['country'], $data['password']);
+        $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
+        $user->setId($data['id']);
+        return $user;
     }
 
-    public function update(User $user)
-    {
-        $stmt = $this->pdo->prepare('UPDATE user SET email = ?, pseudo = ?, country = ?, password = ? WHERE id = ?');
-        $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(), $user->getId()]);
-        return $stmt->rowCount();
-    }
-
-    public function delete(User $user)
-    {
-        $stmt = $this->pdo->prepare('DELETE FROM user WHERE id = ?');
-        $stmt->execute([$user->getId()]);
-        return $stmt->rowCount();
-    }
-
-    public function findByToken(mixed $token)
-    {
-        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE token = ?');
-        $stmt->execute([$token]);
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$data) {
-            return null;
-        }
-        return new User($data['email'], $data['pseudo'], $data['country']);
-    }
 }

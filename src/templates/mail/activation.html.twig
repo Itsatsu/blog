@@ -1,0 +1,62 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation de compte</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            background-color: #f7f7f7;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #4e5f6d;
+            border-radius: 4px;
+            display: inline-block;
+            padding: 10px 24px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td class="content">
+            <h1>Activation de compte</h1>
+            <p>Merci {{ user.pseudo }} pour ton inscription! Pour activer ton compte, clique sur le bouton ci-dessous :</p>
+            <div class="button-container">
+                        <a href="http://blog.test/activation/{{ user.token }}" target="_blank" class="button">Activer mon compte</a>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
