@@ -96,6 +96,15 @@ class SecurityController extends Controller
         header('Location:/login');
 
     }
+
+    public function test()
+    {
+        $userRepository = new UserRepository();
+        $user = $userRepository->findById(1);
+        return $this->view('/mail/activation.html.twig',[
+            'user' => $user
+        ]);
+    }
 }
 
 
