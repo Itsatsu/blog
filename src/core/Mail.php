@@ -50,17 +50,19 @@ class Mail
             $mail->Port= $_ENV['MAILER_PORT'];
 
             //Recipients
+            $mail->CharSet = 'UTF-8';
             $mail->setFrom($_ENV['MAILER_FROM'], $configuration->getFullname());
             $mail->addAddress($user->getEmail(), $user->getPseudo());     //Add a recipient//Name is optional
-
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $subject;
             $mail->Body    = $content;
 
             $mail->send();
             echo 'Message has been sent';
+
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
         }
     }
 

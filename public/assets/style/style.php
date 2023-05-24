@@ -51,6 +51,8 @@ input[type="submit"]{
 background: linear-gradient(90deg, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0%, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%);
 height: 50px;
 width: 200px !important;
+
+
 }
 nav{
 background-color: #2B2C3E;
@@ -129,6 +131,7 @@ input[type="submit"], button{
 background: linear-gradient(90deg, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0%, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%);
 height: 50px;
 width: 60%;
+cursor: pointer;
 }
 .container{
 margin-left: 2%;
@@ -240,6 +243,7 @@ color: red;
 }
 
 
+
 @font-face {
 font-family: "Gilroy-Medium";
 font-style: normal;
@@ -256,3 +260,4 @@ font-family: "Gilroy-Bold";
 font-weight: bold;
 src: url('../font/Gilroy-Bold.ttf');
 }
+

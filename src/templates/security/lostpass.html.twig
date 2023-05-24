@@ -1,0 +1,26 @@
+{% extends '/security/base.html.twig' %}
+{% block title %}Mot de passe oublié{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/login.css">
+{% endblock %}
+{% block body %}
+
+
+
+    <h1>Mot de passe oublié</h1>
+    <p>Vous avez un compte ? <a href="login">Se connecter</a></p>
+
+    {% if errors is defined %}
+        {% for key, value in errors %}
+            <p class="alert alert-{{key}}">
+                {{ value }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        <input type="email" name="lostpass[email]" id="email" placeholder="Email" required>
+        <input type="submit" name="lostpass[submit]" id="sub" value="Réinitialisé le mot de passe">
+    </form>
+    <p>Vous n'avez pas de compte ? <a href="/signup">S'enregister</a></p>
+{% endblock %}

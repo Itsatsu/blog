@@ -70,18 +70,22 @@ class Request
 
         $method = $this->action;
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            if (count($this->params) > 0) {
+                return $controller->$method($this->params>0 ?? $this->params);
 
-                return $controller->$method($this->params);
-            } else {
-                return $controller->$method();
-            }
+//            if (count($this->params) > 0) {
+//                return $controller->$method($this->params);
+//            } else {
+//                return $controller->$method();
+//            }
+
         } else {
-            if (count($this->params) > 0) {
-                return $controller->$method($this->request, $this->params);
-            } else {
-                return $controller->$method($this->request);
-            }
+                return $controller->$method($this->request, $this->params>0 ?? $this->params);
+
+//            if (count($this->params) > 0) {
+//                return $controller->$method($this->request, $this->params);
+//            } else {
+//                return $controller->$method($this->request);
+//            }
         }
     }
 

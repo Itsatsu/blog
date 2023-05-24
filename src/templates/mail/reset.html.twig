@@ -127,14 +127,15 @@
         <table>
             <tr>
                 <td class="content">
-                    <h1>Activation de ton compte</h1>
-                    <h3>Merci {{ user.pseudo }} pour ton inscription!</h3>
-                    <p> Pour activer ton compte,clique sur le bouton ci-dessous :</p>
+                    <h1>Réinitialisation du mot de passe</h1>
+                    <h3>Salut {{ user.pseudo }} </h3>
+                    <p> Voici le lien pour réinitialiser ton mot de passe,<br>
+                        clique sur le bouton ci-dessous :</p>
                     <div class="button-container">
-                        <a href="{{ server }}/activation/{{ user.token }}" target="_blank" class="button">Activer mon compte</a>
+                        <a href="{{server}}/activation/{{ user.token }}" target="_blank" class="button">Réinitialisé mon mot de passe</a>
                     </div>
                     <p>Si le bouton ne fonctionne pas,<br> copie-colle le lien suivant dans ton navigateur :</p>
-                    <p>{{ server }}/activation/{{ user.token }}</p>
+                    <p>{{server}}/resetpassword/{{user.token}}</p>
                 </td>
             </tr>
         </table>
