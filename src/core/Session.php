@@ -66,6 +66,11 @@ class Session
         unset($_SESSION['message']);
     }
 
+    public function start()
+    {
+        session_start();
+    }
+
 
 
     public function destroy()

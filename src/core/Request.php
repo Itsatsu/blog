@@ -21,24 +21,6 @@ class Request
         $this->class = $class;
     }
 
-//    public function match($url)
-//    {
-//        $url = trim($url, '/');
-//        $path = preg_replace("#({[\w]+})#", "([^/]+)", $this->path);
-//
-//        $pathToMatch = "#^$path$#";
-//
-//        if (preg_match($pathToMatch, $url, $results)) {
-//
-//            array_shift($results);
-//            $this->params = $results;
-//
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-
     public function match($url)
     {
         $url = trim($url, '/');
@@ -70,22 +52,22 @@ class Request
 
         $method = $this->action;
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                return $controller->$method($this->params>0 ?? $this->params);
+              //  return $controller->$method($this->params>0 ?? $this->params);
 
-//            if (count($this->params) > 0) {
-//                return $controller->$method($this->params);
-//            } else {
-//                return $controller->$method();
-//            }
+            if (count($this->params) > 0) {
+                return $controller->$method($this->params);
+            } else {
+                return $controller->$method();
+            }
 
         } else {
-                return $controller->$method($this->request, $this->params>0 ?? $this->params);
+//                return $controller->$method($this->request, $this->params>0 ?? $this->params);
 
-//            if (count($this->params) > 0) {
-//                return $controller->$method($this->request, $this->params);
-//            } else {
-//                return $controller->$method($this->request);
-//            }
+            if (count($this->params) > 0) {
+                return $controller->$method($this->params,$this->request);
+            } else {
+                return $controller->$method($this->request);
+            }
         }
     }
 

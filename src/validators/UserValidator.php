@@ -33,7 +33,7 @@ class UserValidator
 
         if (empty($this->user->getPassword())) {
             $this->addError('danger', 'Le mot de passe est obligatoire.');
-        } elseif (password_verify($this->user->getConfirmPassword(), $this->user->getPassword()) !== true) {
+        } elseif ($this->user->getConfirmPassword() !== $this->user->getPassword()){
             $this->addError('danger', 'Les mots de passe ne correspondent pas.');
         }
 
@@ -48,16 +48,25 @@ class UserValidator
     {
         $userRepository = new UserRepository();
 
-        if (empty($this->user->getEmail())) {
+        if (empty($this->user[0])) {
             $this->addError('danger', "L'email est obligatoire.");
-        } elseif ($userRepository->findByEmail($this->user->getEmail()) === null) {
-            $this->addError('danger', "L'email n'existe pas.");
+        }
+        $user = $userRepository->findByEmail($this->user[0]);
+
+        if ( $user === null) {
+            $this->addError('danger', "L'email ou le mot de passe est incorrect.");
         }
 
-        if (empty($this->user->getPassword())) {
+        if (empty($this->user[1])) {
             $this->addError('danger', 'Le mot de passe est obligatoire.');
-        } elseif ($userRepository->findByEmail($this->user->getEmail())->verifyPassword($this->user->getPassword()) !== true) {
-            $this->addError('danger', 'Le mot de passe est incorrect.');
+        }
+
+        if ($user->verifyPassword($this->user[1]) !== true) {
+            $this->addError('danger', "L'email ou le mot de passe est incorrect.");
+        }
+
+        if($user->getIsActive() === false){
+            $this->addError('danger', "Votre compte n'est pas activé.");
         }
 
         if (empty($this->errors)) {

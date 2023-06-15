@@ -16,6 +16,7 @@ color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 
 font-size: 20px;
 }
 a:link{
+color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
 text-decoration: none;
 }
 p{
@@ -169,11 +170,11 @@ border-radius: 0px 36px 36px 0px ;
 
 }
 nav div{
-color: #404251;
+color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
 margin-top: 20px;
 }
 nav a{
-color: #404251;
+color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
 margin: 20px;
 text-align: center;
 }

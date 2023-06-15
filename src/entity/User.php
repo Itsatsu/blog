@@ -1,6 +1,7 @@
 <?php
 
 namespace entity;
+
 class User
 {
     private $email;
@@ -15,7 +16,7 @@ class User
     public function __construct($email, $password, $pseudo = null, $country = null, $password_confirm = null,)
     {
         $this->email = $email;
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
 
         $this->pseudo = $pseudo;
         $this->country = $country;
@@ -65,14 +66,20 @@ class User
         $this->country = $country;
     }
 
-    public function verifyPassword($password)
-    {
-        return password_verify($password, $this->password);
-    }
-
-    public function setPassword($newPassword)
+    public function hashPassword($newPassword)
     {
         $this->password = password_hash($newPassword, PASSWORD_DEFAULT);
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function verifyPassword($password)
+    {
+
+        return password_verify($password, $this->password);
     }
 
     public function getPassword()
@@ -108,6 +115,11 @@ class User
     public function setIsActive()
     {
         $this->is_active = true;
+    }
+
+    public function removeToken()
+    {
+        $this->token = null;
     }
 
 

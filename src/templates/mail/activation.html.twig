@@ -129,12 +129,12 @@
                 <td class="content">
                     <h1>Activation de ton compte</h1>
                     <h3>Merci {{ user.pseudo }} pour ton inscription!</h3>
-                    <p> Pour activer ton compte,clique sur le bouton ci-dessous :</p>
+                    <p> Pour activer ton compte, clique sur le bouton ci-dessous :</p>
                     <div class="button-container">
-                        <a href="{{ server }}/activation/{{ user.token }}" target="_blank" class="button">Activer mon compte</a>
+                        <a href="http://{{ server }}/activation/{{ user.token }}" target="_blank" class="button">Activer mon compte</a>
                     </div>
                     <p>Si le bouton ne fonctionne pas,<br> copie-colle le lien suivant dans ton navigateur :</p>
-                    <p>{{ server }}/activation/{{ user.token }}</p>
+                    <p>http://{{ server }}/activation/{{ user.token }}</p>
                 </td>
             </tr>
         </table>

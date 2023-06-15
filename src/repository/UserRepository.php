@@ -20,6 +20,7 @@ class UserRepository
     public function create(User $user)
     {
         $user->setToken();
+        $user->hashPassword($user->getPassword());
         $stmt = $this->pdo->prepare('INSERT INTO user (email, pseudo, country, password, token) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(), $user->getToken()]);
         return $this->pdo->lastInsertId();
@@ -28,8 +29,9 @@ class UserRepository
 
     public function update(User $user)
     {
-        $stmt = $this->pdo->prepare('UPDATE user SET email = ?, pseudo = ?, country = ?, password = ?, is_active = ? WHERE id = ?');
-        $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(), $user->getId(), $user->getIsActive()]);
+        $user->setIsActive();
+        $stmt = $this->pdo->prepare('UPDATE user SET email = ?, pseudo = ?, country = ?, password = ?, is_active = ?, token = ? WHERE id = ?');
+        $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(),$user->getIsActive(), $user->getToken(),$user->getId()]);
         return $stmt->rowCount();
     }
 
