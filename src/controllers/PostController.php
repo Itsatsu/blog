@@ -3,13 +3,21 @@
 namespace controllers;
 
 use Core\Controller;
+use Core\Session;
+use entity\User;
+use Repository\UserRepository;
 
 class PostController extends Controller
 {
     function show_all_post()
     {
-
-        return $this->view('/posts/show_all_post.html.twig');
+        $session = new Session();
+        $userRepository = new UserRepository();
+        $user = $userRepository->findById($session->get('user'));
+        return $this->view('/posts/show_all_post.html.twig',[
+            'message' => $session->getMessage(),
+            'user' => $user,
+        ]);
 
     }
     function show_post()

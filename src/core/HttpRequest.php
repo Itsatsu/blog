@@ -8,8 +8,13 @@ class HttpRequest{
     {
         return $_POST;
     }
-    public function name(string $field)
+    public function get(string $field)
     {
-        return $_POST[$field];
+        if(isset($_POST[$field])){
+            return $_POST[$field];
+        }else{
+            return null;
+        }
     }
+
 }

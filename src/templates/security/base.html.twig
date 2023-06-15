@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum-{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css"  href="/public/assets/style/style.css" >
+    <link rel="stylesheet" type="text/css"  href="/public/assets/style/style.php" >
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
+
 <img src="/public/assets/images/blabla_users.png" alt="" class="perso">
 <div class="container">
     <div class="elipse1"></div>
     <div class="elipse2"></div>
     <div class="elipse3"></div>
+    {% if message is not null  %}
+        <div style="z-index: 10; background-color: #2B2C3E; border-radius: 15px ; padding: 5px 20px">
+            <p class="alert-{{message.type}}"> {{ message.value }}</p>
+        </div>
+
+    {% endif %}
     <div class="fond-gris">
+
     {% block body %}{% endblock %}
     </div>
 </div>
