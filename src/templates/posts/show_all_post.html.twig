@@ -6,66 +6,45 @@
 {% block title %}Les posts{% endblock %}
 
 {% block body %}
-    <div>
-    <h2 >Les derniers posts</h2>
+<div>
+    <h2>Les derniers posts</h2>
+</div>
+<div class="contenu">
+
+    <div class="col">
+        {% for post in posts %}
+            {% if loop.index is even %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <h3>{{ post.subtitle }}</h3>
+            <p>{{ post.content | slice(0,150) }}</p>
+            <p class="date">Date de modification: {{ post.updatedAt | date('d/m/Y H:i:s')}}</p>
+            <div style="display: flex; justify-content: space-between">
+                {% if user.id == post.id %}
+                <a href="/posts/detail/{{post.id}}">Voir mon post complet</a>
+                    {% else %}
+                    <a href="/posts/detail/{{post.id}}">Voir le post complet</a>
+                {% endif %}
+                {% if user.id == post.id %}
+                    <a href="/posts/modification/{{ post.id}}">Modifier mon post</a>
+                {% endif %}
+            </div>
+
+        </article>
+        {% endif %}
+        {% endfor %}
     </div>
-    <div class="contenu">
-
-        <div class="col">
-            <article >
-                <h2>Un titre</h2>
-                <h3>Un chapo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.</p>
-
-                <p class="date">Date de modification: 20/02/2023</p>
-                <a href="posts/detail">Voir le post complet</a>
-
-            </article>
-            <article >
-                <h2>Un titre</h2>
-                <h3>un chapo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.</p>
-                <p class="date">Date de modification: 20/02/2023</p>
-                <a>Voir le post complet</a>
-            </article>
-            <article >
-                <h2>Un titre</h2>
-                <h3>un chapo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.</p>
-                <p class="date">Date de modification: 20/02/2023</p>
-                <a>Voir le post complet</a>
-            </article></div>
-        <div class="col">
-            <article >
-                <h2>Un titre</h2>
-                <h3>un chapo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.</p>
-                <p class="date">Date de modification: 20/02/2023</p>
-                <a>Voir le post complet</a>
-            </article>
-            <article >
-                <h2>Un titre</h2>
-                <h3>un chapo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.</p>
-                <p class="date">Date modification: 20/02/2023</p>
-                <a>Voir le post complet</a>
-            </article>
-            <article >
-                <h2>Un titre</h2>
-                <h3>un chapo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                    qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.</p>
-                <p class="date">Date modification: 20/02/2023</p>
-                <a>Voir le post complet</a>
-            </article>
-        </div>
+    <div class="col">
+        {% for post in posts %}
+            {% if loop.index is odd %}
+                <article>
+                    <h2>{{ post.title }}</h2>
+                    <h3>{{ post.subtitle }}</h3>
+                    <p>{{ post.content| slice(0,150) }}</p>
+                    <p class="date">Date modification: {{ post.updatedAt | date('d/m/Y H:i:s')}}</p>
+                    <a href="/posts/detail/{{post.id}}">Voir le post complet</a>
+                </article>
+            {% endif %}
+        {% endfor %}
+    </div>
 {% endblock %}

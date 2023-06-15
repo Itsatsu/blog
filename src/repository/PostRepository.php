@@ -55,7 +55,7 @@ class PostRepository
         if (!$data) {
             return null;
         }
-        $post = new post($data['categorie'], $data['user'], $data['title'], $data['content'], $data['subtitle'], $data['created_at'], $data['updated_at'], $data['is_validated']);
+        $post = new post($data['categorie_id'], $data['user_id'], $data['title'], $data['content'], $data['subtitle'], $data['created_at'], $data['updated_at'], $data['is_validated']);
         $post->setId($data['id']);
         return $post;
     }
@@ -82,6 +82,25 @@ class PostRepository
         $post = new post($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $post->setId($data['id']);
         return $post;
+    }
+
+    public function findLastPost()
+    {
+        //it weel be return an array of object post but only 10 and is_validate = 1
+        $stmt = $this->pdo->prepare('SELECT * FROM post WHERE is_validated = 1 ORDER BY created_at DESC LIMIT 10 ');
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+        $posts = [];
+        $i = 0;
+        foreach ($data as $line) {
+            $post = new post($line['categorie_id'], $line['user_id'], $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
+            $posts[$i] = $post;
+            $i++;
+        }
+        return $posts;
     }
 
 }

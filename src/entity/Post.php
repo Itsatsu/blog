@@ -12,8 +12,9 @@ class Post
     private $created_at;
     private $updated_at;
     private $is_validated;
+    private $id;
 
-    public function __construct($categorie, $user, $title, $content, $subtitle, $created_at, $updated_at, $is_validated)
+    public function __construct($categorie, $user, $title, $content, $subtitle, $created_at, $updated_at, $is_validated, $id = null)
     {
         $this->categorie = $categorie;
         $this->user = $user;
@@ -23,6 +24,7 @@ class Post
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
         $this->is_validated = $is_validated;
+        $this->id = $id;
     }
     public function getId()
     {
