@@ -12,12 +12,24 @@
     <div class="contenu">
 
         <article class="post">
-            <form action="">
-                <h2>Ajouter un post</h2>
-                <input type="texte" placeholder="Un titre">
-                <input type="texte" placeholder="Un chapô">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Entrer ici le contenu de votre post ...."></textarea>
-                <input type="submit" value="Poster">
+            <form method="POST">
+                <h2>Créer votre post</h2>
+                <label for="title" style="color: white">Titre</label>
+                <input type="texte" name="create[title]" placeholder="Titre du post" id="title">
+                <br>
+                <label for="categorie" style="color: white">Sous-titre</label>
+                <input type="texte" name="create[subtitle]" placeholder="sous-titre">
+                <br>
+                <label for="categorie" style="color: white">Contenu</label>
+                <textarea name="create[content]" id="" cols="30" rows="10" placeholder="contenu"></textarea>
+                <br>
+                <label for="categorie" style="color: white">Catégorie</label>
+                <select name="create[categorie]" id="categorie">
+                    {% for categorie in categories %}
+                            <option value="{{ categorie.id }}">{{ categorie.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Créer">
             </form>
         </article>
         </div>

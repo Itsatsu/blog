@@ -6,26 +6,13 @@
 {% block body %}
     <div class="contenu">
     <article class="post" >
-    <h1>Titre du post</h1>
-        <h2>Un chapo</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus, <br>
-                <br>
-
-
-                qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-                qui ducimus soluta nam, asperiores laborum quibusdam alias sint adipisci repellat corporis, dignissimos ullam. Magni, eum.
-            </p>
+    <h1>{{ post.title }}</h1>
+        <h2>{{ post.subTitle }}</h2>
+            <p>{{ post.content }}</p>
             <div class="info">
-                <p class="date">Auteur : Itsatsu</p>
-                <p class="date">Date de modification: 20/02/2023</p>
+                <p class="date">Auteur : {{ author.pseudo }}</p>
+                <p class="date">Date de création: {{  post.createdAt | date('d/m/Y H:i:s') }} </p>
+                <p class="date">Date de modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
             </div>
 
             </article>

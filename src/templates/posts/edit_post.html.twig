@@ -11,13 +11,13 @@
     </div>
     <div class="contenu">
 
-        <article class="post">
-            <form action="">
+        <article class="post" >
+            <form method="POST">
                 <h2>Modifier votre post</h2>
-                <input type="texte" placeholder="{{ post.title }}" value="{{ post.title }}">
-                <input type="texte" placeholder="{{ post.subtitle }}" value="{{ post.subtitle}}">
-                <textarea name="" id="" cols="30" rows="10" placeholder="{{ post.content }}">{{ post.content}}</textarea>
-                <select>
+                <input type="texte" name="update[title]" placeholder="{{ post.title }}" value="{{ post.title }}">
+                <input type="texte" name="update[subtitle]" placeholder="{{ post.subtitle }}" value="{{ post.subtitle}}">
+                <textarea name="update[content]" id="" cols="30" rows="10" placeholder="{{ post.content }}">{{ post.content}}</textarea>
+                <select name="update[categorie]">
                     {% for categorie in categories %}
                         {% if categorie.id == post.id_categorie %}
                             <option value="{{ categorie.id }}" selected>{{ categorie.name }}</option>
@@ -27,11 +27,11 @@
                       {% endfor %}
                 </select>
                 <div style="display: flex; justify-content: space-between; width: 80%">
-                    <p>Date decréation du post: {{ post.createdAt | date('d/m/Y H:i:s') }}</p>
-                    <p>Date de dernière modification du post: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
+                    <p>Date de création: {{ post.createdAt | date('d/m/Y H:i:s') }}</p>
+                    <p>Date de la dernière modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
                 </div>
 
-                <input type="submit" value="Poster">
+                <input type="submit" value="Modifier">
             </form>
         </article>
         </div>
