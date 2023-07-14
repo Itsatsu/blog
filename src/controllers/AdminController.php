@@ -6,6 +6,8 @@ use Core\Controller;
 use Core\HttpRequest;
 use Core\Mail;
 use Core\Session;
+use Entity\Configuration;
+use Repository\ConfigurationRepository;
 use Repository\UserRepository;
 
 class AdminController extends Controller
@@ -69,6 +71,33 @@ class AdminController extends Controller
         ]);
 
     }
+
+    function configuration(){
+        $session = new Session();
+        $userRepository = new UserRepository();
+        $user = $userRepository->findById($session->get('user'));
+        if($user->getRole()['name'] != 'admin'){
+            $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
+            header('Location: /');
+        }
+        $request = new HttpRequest();
+        if ($request->get('update') != null) {
+            $configRepository = new ConfigurationRepository();
+            $sendconfig = $request->get('update');
+            $config = new Configuration($sendconfig['fullname'], $sendconfig['title'], $sendconfig['color_primary'], $sendconfig['color_secondary'], $sendconfig['cv']);
+            $configRepository->update($config);
+            $session->setMessage('success', 'Votre configuration a bien été modifié');
+            header('Location: /administration/');
+        }
+
+        $configRepository = new ConfigurationRepository();
+        return $this->view('/admin/edit_configuration.html.twig',[
+            'message' => $session->getMessage(),
+            'user' => $user,
+            'config' => $configRepository->findById(1),
+        ]);
+    }
+
     function error()
     {
         return $this->view('/404.html.twig');

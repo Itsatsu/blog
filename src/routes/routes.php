@@ -45,3 +45,6 @@ Route::meth('/administration/categorie/edit/{id}', CategorieController::class, '
 
 //users
 Route::meth('/administration/user/index', SecurityController::class, 'index');
+
+//configuration
+Route::meth('/administration/configuration/edit', AdminController::class, 'configuration');
