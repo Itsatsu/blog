@@ -109,6 +109,72 @@ class PostController extends Controller
         ]);
     }
 
+    function validation_index()
+    {
+        $session = new Session();
+        $userRepository = new UserRepository();
+        $postRepository = new PostRepository();
+
+        $user = $userRepository->findById($session->get('user'));
+        if($user->getRole()['name'] != 'admin'){
+            $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
+            header('Location: /');
+        }
+        $posts = $postRepository->findAllNotValidated();
+
+        return $this->view('/posts/validation_index.html.twig', [
+            'posts' => $posts,
+            'message' => $session->getMessage(),
+            'user' => $user,
+        ]);
+
+    }
+
+    function validation($params)
+    {
+        $session = new Session();
+        $userRepository = new UserRepository();
+        $postRepository = new PostRepository();
+
+        $user = $userRepository->findById($session->get('user'));
+
+        if($user->getRole()['name'] != 'admin'){
+            $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
+            header('Location: /');
+        }
+        if (isset($params['id'])) {
+            $post = $postRepository->findById($params['id']);
+            $post->setIsValidated(1);
+            $time = new DateTime();
+            $post->setUpdatedAt($time->format('Y-m-d H:i:s'));
+            $postRepository->update($post);
+
+            $session->setMessage('success', 'L\'article a bien été validé');
+            header('Location: /administration/posts/validation_index');
+        }
+        header('Location: /administration/posts/validation_index');
+    }
+    function delete($params)
+    {
+        $session = new Session();
+        $userRepository = new UserRepository();
+        $postRepository = new PostRepository();
+
+        $user = $userRepository->findById($session->get('user'));
+
+        if($user->getRole()['name'] != 'admin'){
+            $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
+            header('Location: /');
+        }
+        if (isset($params['id'])) {
+            $post = $postRepository->findById($params['id']);
+            $postRepository->delete($post);
+            $session->setMessage('success', 'L\'article a bien été supprimé');
+            header('Location: /administration/posts/validation_index');
+        }
+        header('Location: /administration/posts/validation_index');
+    }
+
 
 
 

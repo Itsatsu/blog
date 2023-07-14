@@ -32,8 +32,8 @@ class PostRepository
 
     public function update(Post $post)
     {
-        $stmt = $this->pdo->prepare('UPDATE post SET categorie_id = ?, user_id = ?, title = ?, content = ?, subtitle = ?, updated_at = ? WHERE id = ?');
-        $stmt->execute([$post->getCategorie(), $post->getUser(), $post->getTitle(), $post->getContent(), $post->getSubtitle(), $post->getUpdatedAt(), $post->getId()]);
+        $stmt = $this->pdo->prepare('UPDATE post SET categorie_id = ?, user_id = ?, title = ?, content = ?, subtitle = ?, updated_at = ?, is_validated = ? WHERE id = ?');
+        $stmt->execute([$post->getCategorie(), $post->getUser(), $post->getTitle(), $post->getContent(), $post->getSubtitle(), $post->getUpdatedAt(), $post->getIsValidated(), $post->getId()]);
         return $stmt->rowCount();
     }
 
@@ -66,6 +66,24 @@ class PostRepository
             return true;
         }
         return false;
+    }
+    public function findAllNotValidated()
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM post WHERE is_validated = 0');
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return false;
+        }
+        $posts = [];
+        $i = 0;
+        foreach ($data as $line) {
+            $post = new post($line['categorie_id'], $line['user_id'], $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
+            $posts[$i] = $post;
+            $i++;
+        }
+
+        return $posts;
     }
 
     public function findByUser($email)
