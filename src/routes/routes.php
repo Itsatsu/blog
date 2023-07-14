@@ -16,5 +16,6 @@ Route::meth('/resetpassword/{token}', SecurityController::class, 'resetPassword'
 Route::meth('/test', SecurityController::class, 'test');
 Route::meth('/posts', PostController::class, 'show_all_post');
 Route::meth('/posts/liste-modification', PostController::class, 'show_all_edit_post');
-Route::meth('/posts/modification', PostController::class, 'edit_post');
-Route::meth('/posts/detail', PostController::class, 'show_post');
+Route::meth('/posts/modification/{id}', PostController::class, 'edit_post');
+Route::meth('/posts/create', PostController::class, 'new_post');
+Route::meth('/posts/detail/{id}', PostController::class, 'show_post');

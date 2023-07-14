@@ -102,7 +102,7 @@ font-family: "Gilroy-Medium";
 font-weight: normal;
 
 }
-input, button{
+input, button, select{
 font-family: "Gilroy-Medium";
 font-size: 20px;
 border-radius: 100px;
@@ -113,6 +113,7 @@ color: white;
 width: 80%;
 height: 40px;
 margin: 10px;
+text-align: center;
 
 }
 textarea{

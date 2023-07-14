@@ -8,6 +8,7 @@
         
     }
     .contenu{
+        width: 100% !important;
         justify-content: center;
         display: flex;
 
@@ -45,6 +46,7 @@
         border-radius: 16px;
     }
     .contenu{
+
         padding-top: 100px;
         display: flex;
         flex-direction: column;
