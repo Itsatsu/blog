@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/modifpost.css">
+{% endblock %}
+{% block title %}Editer une catégorie{% endblock %}
+
+{% block body %}
+    <div>
+    <h2 >Modification d'une catégorie</h2>
+    </div>
+    <div class="contenu">
+
+        <article class="post" >
+            <form method="POST">
+                <h2>Modifier votre post</h2>
+                <input type="texte" name="update[name]" placeholder="{{ categorie.name }}" value="{{ categorie.name }}">
+                <input type="submit" value="Modifier">
+            </form>
+        </article>
+        </div>
+{% endblock %}

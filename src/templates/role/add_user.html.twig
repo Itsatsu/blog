@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/modifpost.css">
+{% endblock %}
+{% block title %}Ajouter un role à un utilisateur{% endblock %}
+
+{% block body %}
+    <div>
+    <h2 >AJout d'un role à un utilisateur</h2>
+    </div>
+    <div class="contenu">
+
+        <article class="post">
+            <form method="POST">
+                <h2>Modifier le role d'un utilisateur</h2>
+                <label for="title" style="color: white">Email de l'utilisateur</label>
+                <select name="create[user]">
+                    {% for user in users %}
+                            <option value="{{ user.id }}">{{user.email }}</option>
+                    {% endfor %}
+                </select>
+                <label for="role" style="color: white">Choisir un role</label>
+                <select id="role" name="create[role]">
+                    {% for role in roles %}
+                        <option value="{{ role.id }}">{{ role.name }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <input type="submit" value="Ajouter le role à l'utilisateur" name="create[submit]">
+            </form>
+        </article>
+        </div>
+{% endblock %}

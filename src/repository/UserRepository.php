@@ -3,6 +3,7 @@
 namespace Repository;
 
 
+use entity\Role;
 use Entity\User;
 use PDO;
 use Core\Database;
@@ -17,13 +18,32 @@ class UserRepository
         $this->pdo = $database->getPDO();
     }
 
+    public function findAll()
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM user');
+        $stmt->execute();
+        $users = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $user = new User($row['email']) ;
+            $user->setId($row['id']);
+            $users[] = $user ;
+        }
+        return $users;
+    }
+
     public function create(User $user)
     {
+        $roleRepository = new RoleRepository();
+        $role = $roleRepository->findIdByName('visitor');
+        $user->setRole($role);
         $user->setToken();
         $user->hashPassword($user->getPassword());
         $stmt = $this->pdo->prepare('INSERT INTO user (email, pseudo, country, password, token) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([$user->getEmail(), $user->getPseudo(), $user->getCountry(), $user->getPassword(), $user->getToken()]);
-        return $this->pdo->lastInsertId();
+        $user->setId($this->pdo->lastInsertId());
+        $stmt2 = $this->pdo->prepare('INSERT INTO role_has_user (role_id, user_id) VALUES (?, ?)');
+        $stmt2->execute([$user->getRole(), $user->getId()]);
+        return $user->getId();
     }
 
 
@@ -52,6 +72,17 @@ class UserRepository
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
+
+        $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = ?');
+
+        $stmt2->execute([$user->getId()]);
+        $stmt3 = $this->pdo->prepare('SELECT * FROM role WHERE id = ?');
+        $data2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $stmt3->execute([$data2['role_id']]);
+        $data3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+
+        $user->setRole($data3);
         return $user;
     }
 
@@ -65,6 +96,18 @@ class UserRepository
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
+
+        $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = ?');
+
+        $stmt2->execute([$user->getId()]);
+        $stmt3 = $this->pdo->prepare('SELECT * FROM role WHERE id = ?');
+        $data2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $stmt3->execute([$data2['role_id']]);
+        $data3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+
+        $user->setRole($data3);
+
         return $user;
     }
 
@@ -89,7 +132,39 @@ class UserRepository
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
+
+        $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = ?');
+
+        $stmt2->execute([$user->getId()]);
+        $stmt3 = $this->pdo->prepare('SELECT * FROM role WHERE id = ?');
+        $data2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $stmt3->execute([$data2['role_id']]);
+        $data3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+        $user->setRole($data3);
+
         return $user;
+    }
+
+    public function addRole(User $user, Role $role)
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO role_has_user (role_id, user_id) VALUES (?, ?)');
+        $stmt->execute([$role->getId(), $user->getId()]);
+        return $stmt->rowCount();
+    }
+
+    public function removeRole(User $user, Role $role)
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM role_has_user WHERE role_id = ? AND user_id = ?');
+        $stmt->execute([$role->getId(), $user->getId()]);
+        return $stmt->rowCount();
+    }
+
+    public function updateRole(User $user, Role $role)
+    {
+        $stmt = $this->pdo->prepare('UPDATE role_has_user SET role_id = ? WHERE user_id = ?');
+        $stmt->execute([$role->getId(), $user->getId()]);
+        return $stmt->rowCount();
     }
 
 }

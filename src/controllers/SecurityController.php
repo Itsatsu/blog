@@ -195,6 +195,25 @@ class SecurityController extends Controller
         $session->setMessage('success', 'Vous êtes déconnecté.');
         header('Location: /login');
     }
+
+    public function index(){
+        $session = new Session();
+        $userRepository = new UserRepository();
+
+        $user = $userRepository->findById($session->get('user'));
+        if($user->getRole()['name'] != 'admin'){
+            $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
+            header('Location: /');
+        }
+
+        $users = $userRepository->findAll();
+        return $this->view('/user/liste.html.twig', [
+            'users' => $users,
+            'message' => $session->getMessage()
+        ]);
+
+    }
+
 }
 
 

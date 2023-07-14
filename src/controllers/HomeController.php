@@ -13,8 +13,12 @@ class HomeController extends Controller
     function index()
     {
         $session = new Session();
+        $userRepository = new UserRepository();
+        $user = $userRepository->findById($session->get('user'));
+
        return $this->view('/home/index.html.twig',[
            'message' => $session->getMessage(),
+               'user' => $user,
        ]
        );
 
