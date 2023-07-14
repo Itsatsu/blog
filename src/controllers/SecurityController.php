@@ -205,11 +205,11 @@ class SecurityController extends Controller
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
-
         $users = $userRepository->findAll();
         return $this->view('/user/liste.html.twig', [
             'users' => $users,
-            'message' => $session->getMessage()
+            'message' => $session->getMessage(),
+            'user' => $user
         ]);
 
     }

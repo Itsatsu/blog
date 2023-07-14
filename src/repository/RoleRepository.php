@@ -65,11 +65,12 @@ class RoleRepository{
         $stmt = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = ?');
         $stmt->execute([$id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
         if (!$data) {
             return null;
         }
-        $role = new role($data['name'],$data['id']);
-        return $role;
+
+        return $this->findById($data['role_id']);
     }
 
 

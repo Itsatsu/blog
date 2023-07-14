@@ -7,15 +7,18 @@ use entity\Role;
 use Entity\User;
 use PDO;
 use Core\Database;
+use Repository\RoleRepository;
 
 class UserRepository
 {
     private $pdo;
+    private $roleRepository;
 
     public function __construct()
     {
         $database = new Database();
         $this->pdo = $database->getPDO();
+        $this->roleRepository = new RoleRepository();
     }
 
     public function findAll()
@@ -24,8 +27,11 @@ class UserRepository
         $stmt->execute();
         $users = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $user = new User($row['email']) ;
+            $user = new User($row['email'], $row['pseudo'], $row['country']) ;
             $user->setId($row['id']);
+            $role = $this->roleRepository->findRoleByUser($row['id']);
+
+            $user->setRole($role);
             $users[] = $user ;
         }
         return $users;
