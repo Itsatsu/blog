@@ -11,6 +11,7 @@ use Entity\User;
 use Repository\CategorieRepository;
 use Repository\PostRepository;
 use Repository\UserRepository;
+use Validators\PostValidator;
 
 class PostController extends Controller
 {
@@ -72,9 +73,19 @@ class PostController extends Controller
                     $post->setUser($user->getId());
                     $time = new DateTime();
                     $post->setUpdatedAt($time->format('Y-m-d H:i:s'));
-                    $postRepository->update($post);
-                    $session->setMessage('success', 'Votre article a bien été modifié, il dois etre relu par un administrateur avant d\'etre publié');
-                    header('Location: /posts');
+                    $postValidator = new PostValidator($post);
+                    if ($postValidator->validate()) {
+                        $postRepository->update($post);
+                        $session->setMessage('success', 'Votre article a bien été modifié, il dois etre relu par un administrateur avant d\'etre publié');
+                        header('Location: /posts');
+                    }
+                    return $this->view('/posts/edit_post.html.twig', [
+                        'post' => $post,
+                        'user' => $user,
+                        'categories' => $categories,
+                        'errors' => $postValidator->getErrors(),
+                    ]);
+
                 }
                 return $this->view('/posts/edit_post.html.twig', [
                     'post' => $post,
@@ -99,9 +110,18 @@ class PostController extends Controller
             $postRepository = new PostRepository();
             $sendPost = $request->get('create');
             $post = new Post($sendPost['categorie'], $user->getId(), $sendPost['title'], $sendPost['content'], $sendPost['subtitle'], null, null, 0);
-            $postRepository->create($post);
-            $session->setMessage('success', 'Votre article a bien été créer, il dois etre relu par un administrateur avant d\'etre publié');
-            header('Location: /posts');
+            $postValidator = new PostValidator($post);
+            if ($postValidator->validate()) {
+                $postRepository->create($post);
+                $session->setMessage('success', 'Votre article a bien été créer, il dois etre relu par un administrateur avant d\'etre publié');
+                header('Location: /posts');
+            }
+
+            return $this->view('/posts/create_post.html.twig', [
+                'user' => $user,
+                'categories' => $categories,
+                'errors' => $postValidator->getErrors(),
+            ]);
         }
         return $this->view('/posts/create_post.html.twig', [
             'user' => $user,
@@ -116,7 +136,7 @@ class PostController extends Controller
         $postRepository = new PostRepository();
 
         $user = $userRepository->findById($session->get('user'));
-        if($user->getRole()['name'] != 'admin'){
+        if ($user->getRole()['name'] != 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
@@ -138,7 +158,7 @@ class PostController extends Controller
 
         $user = $userRepository->findById($session->get('user'));
 
-        if($user->getRole()['name'] != 'admin'){
+        if ($user->getRole()['name'] != 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
@@ -154,6 +174,7 @@ class PostController extends Controller
         }
         header('Location: /administration/posts/validation_index');
     }
+
     function delete($params)
     {
         $session = new Session();
@@ -162,7 +183,7 @@ class PostController extends Controller
 
         $user = $userRepository->findById($session->get('user'));
 
-        if($user->getRole()['name'] != 'admin'){
+        if ($user->getRole()['name'] != 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
@@ -176,14 +197,12 @@ class PostController extends Controller
     }
 
 
+    function show_all_edit_post()
+    {
 
+        return $this->view('/posts/show_all_edit_post.html.twig');
 
-function show_all_edit_post()
-{
-
-    return $this->view('/posts/show_all_edit_post.html.twig');
-
-}
+    }
 
 
 }

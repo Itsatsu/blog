@@ -10,6 +10,7 @@ use Entity\Categorie;
 use Repository\CategorieRepository;
 
 use Repository\UserRepository;
+use Validators\CategorieValidator;
 
 class CategorieController extends Controller
 {
@@ -80,9 +81,16 @@ class CategorieController extends Controller
             $categorieRepository = new CategorieRepository();
             $sendCategorie = $request->get('create');
             $categorie = new Categorie($sendCategorie['name']);
-            $categorieRepository->create($categorie);
-            $session->setMessage('success', 'Votre catégorie a bien été créer');
-            header('Location: /administration/categorie');
+            $categorieValidator = new CategorieValidator($categorie);
+            if ($categorieValidator->validate()){
+                $categorieRepository->create($categorie);
+                $session->setMessage('success', 'Votre catégorie a bien été créer');
+                header('Location: /administration/categorie');
+            }
+            return $this->view('/categorie/create_categorie.html.twig', [
+                'user' => $user,
+                'errors' => $categorieValidator->getErrors(),
+            ]);
         }
         return $this->view('/categorie/create_categorie.html.twig', [
             'user' => $user,

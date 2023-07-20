@@ -7,6 +7,7 @@ use Core\HttpRequest;
 use Core\Mail;
 use Core\Session;
 use Repository\UserRepository;
+use Validators\UserValidator;
 
 class HomeController extends Controller
 {
@@ -34,9 +35,19 @@ class HomeController extends Controller
             $user->setPseudo($newUser['pseudo']);
             $user->setEmail($newUser['email']);
             $user->setCountry($newUser['country']);
-            $userRepository->update($user);
-            $session->setMessage('success', 'Votre profil a bien été modifié');
-            header('Location: /profil');
+            $userValidator = new UserValidator($user);
+            if($userValidator->validateUpdate()) {
+                $userRepository->update($user);
+                $session->setMessage('success', 'Votre profil a bien été modifié');
+                header('Location: /profil');
+            }else{
+                return $this->view('/user/profil.html.twig',[
+                    'message' => $session->getMessage(),
+                    'user' => $user,
+                    'errors' => $userValidator->getErrors()
+                ]);
+
+            }
 
         }elseif ($request->get('resetPassword') != null) {
             $newUser = $request->get('resetPassword');

@@ -84,7 +84,8 @@ class AdminController extends Controller
         if ($request->get('update') != null) {
             $configRepository = new ConfigurationRepository();
             $sendconfig = $request->get('update');
-            $config = new Configuration($sendconfig['fullname'], $sendconfig['title'], $sendconfig['color_primary'], $sendconfig['color_secondary'], $sendconfig['cv']);
+            var_dump($sendconfig['cv']);
+            $config = new Configuration($sendconfig['fullname'], $sendconfig['slogan'], $sendconfig['title'], $sendconfig['color_primary'], $sendconfig['color_secondary'], $sendconfig['cv']);
             $configRepository->update($config);
             $session->setMessage('success', 'Votre configuration a bien été modifié');
             header('Location: /administration/');
