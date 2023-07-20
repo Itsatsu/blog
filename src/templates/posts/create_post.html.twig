@@ -12,8 +12,16 @@
     <div class="contenu">
 
         <article class="post">
+
             <form method="POST">
                 <h2>Créer votre post</h2>
+                {% if errors is defined %}
+                    {% for key, value in errors %}
+                        <p class="alert alert-{{key}}">
+                            {{ value }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
                 <label for="title" style="color: white">Titre</label>
                 <input type="texte" name="create[title]" placeholder="Titre du post" id="title">
                 <br>
