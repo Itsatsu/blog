@@ -3,21 +3,28 @@
 namespace entity;
 class Configuration
 {
+    private $id;
     private $fullname;
     private $title;
     private $slogan;
     private $color_primary;
     private $color_secondary;
-    private $cv;
+    private $path;
+    private $file_name;
 
-    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $cv)
+    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $path, $file_name)
     {
         $this->fullname = $fullname;
         $this->title = $title;
         $this->slogan = $slogan;
         $this->color_primary = $color_primary;
         $this->color_secondary = $color_secondary;
-        $this->cv = $cv;
+        $this->path = $path;
+        $this->file_name = $file_name;
+    }
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getFullname()
@@ -70,14 +77,24 @@ class Configuration
         $this->color_secondary = $color_secondary;
     }
 
-    public function getCv()
+    public function getPath()
     {
-        return $this->cv;
+        return $this->path;
     }
 
-    public function setCv($cv): void
+    public function setPath($path): void
     {
-        $this->cv = $cv;
+        $this->path = $path;
+    }
+
+    public function getFilename()
+    {
+        return $this->file_name;
+    }
+
+    public function setFilename($file_name): void
+    {
+        $this->file_name = $file_name;
     }
 
 }

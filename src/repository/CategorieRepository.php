@@ -21,29 +21,41 @@ class CategorieRepository{
 
     public function create(Categorie $categorie)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO categorie (name) VALUES (?)');
-        $stmt->execute([$categorie->getName()]);
+        $stmt = $this->pdo->prepare('INSERT INTO categorie (name) VALUES (:name)');
+        $name = $categorie->getName();
+        $stmt->bindParam(':name', $name);
+        $stmt->execute();
         return $this->pdo->lastInsertId();
     }
 
     public function update(Categorie $categorie)
     {
-        $stmt = $this->pdo->prepare('UPDATE categorie SET name = ? WHERE id = ?');
-        $stmt->execute([$categorie->getName(), $categorie->getId()]);
+        $stmt = $this->pdo->prepare('UPDATE categorie SET name = :name WHERE id = :id');
+        $params = [
+            ':name' => $categorie->getName(),
+            ':id' => $categorie->getId()
+        ];
+        foreach ($params as $paramName => $paramValue) {
+            $stmt->bindValue($paramName, $paramValue);
+        };
+        $stmt->execute();
         return $stmt->rowCount();
     }
 
     public function delete(Categorie $categorie)
     {
-        $stmt = $this->pdo->prepare('DELETE FROM categorie WHERE id = ?');
-        $stmt->execute([$categorie->getId()]);
+        $stmt = $this->pdo->prepare('DELETE FROM categorie WHERE id = :id');
+        $id = $categorie->getId();
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
         return $stmt->rowCount();
     }
 
     public function findById($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM categorie WHERE id = ?');
-        $stmt->execute([$id]);
+        $stmt = $this->pdo->prepare('SELECT * FROM categorie WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$data) {
             return null;

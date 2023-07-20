@@ -62,8 +62,9 @@ class RoleRepository{
 
     public function findRoleByUser($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = ?');
-        $stmt->execute([$id]);
+        $stmt = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = :id');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$data) {
