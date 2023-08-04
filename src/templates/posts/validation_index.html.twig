@@ -18,6 +18,7 @@
                     <h2>{{ post.title }}</h2>
                     <h3>{{ post.subtitle }}</h3>
                     <p>{{ post.content | slice(0,150) }}</p>
+                    <p>Auteur : {{ post.user.pseudo }}</p>
                     <p class="date">Date de modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
                     <div style="display: flex; justify-content: space-between">
                             <a href="/administration/posts/detail/{{ post.id }}">Voir le post complet</a>
@@ -35,6 +36,7 @@
                     <h2>{{ post.title }}</h2>
                     <h3>{{ post.subtitle }}</h3>
                     <p>{{ post.content | slice(0,150) }}</p>
+                    <p>Auteur : {{ post.user.pseudo }}</p>
                     <p class="date">Date de modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
                     <div style="display: flex; justify-content: space-between">
                         <a href="/administration/posts/detail/{{ post.id }}">Voir le post complet</a>

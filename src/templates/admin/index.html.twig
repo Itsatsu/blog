@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/allpost.css">
+{% endblock %}
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <div>
+        <h2>Dashboard Admin</h2>
+    </div>
+    <div class="contenu">
+
+    <div class="col">
+                <article>
+                    <h2 style="text-align: center">Les catégories</h2>
+
+                    <div style="display: flex; justify-content: space-around">
+                            <a href="/administration/categorie">Voir la liste </a>
+
+                            <a href="/administration/categorie/create">Ajouter</a>
+                    </div>
+                </article>
+        <article>
+            <h2 style="text-align: center">Les Roles</h2>
+
+            <div style="display: flex; justify-content: space-around">
+                <a href="/administration/roles">Voir la liste </a>
+                <a href="/administration/roles/add-user">Définir un role à un utilisateur</a>
+                <a href="/administration/roles/create">Ajouter</a>
+            </div>
+        </article>
+        <article>
+            <h2 style="text-align: center">Les utilisateurs</h2>
+
+            <div style="display: flex; justify-content: space-around">
+                <a href="/administration/user/index">Voir la liste </a>
+            </div>
+        </article>
+    </div>
+    <div class="col">
+        <article>
+            <h2 style="text-align: center">Validation des postes</h2>
+
+            <div style="display: flex; justify-content: space-around">
+                <a href="/administration/posts/validation_index">Voir la liste </a>
+            </div>
+        </article>
+        <article>
+            <h2 style="text-align: center">Validation des commentaires</h2>
+
+            <div style="display: flex; justify-content: space-around">
+                <a href="/administration/comments/validation_index">Voir la liste</a>
+            </div>
+        </article>
+        <article>
+            <h2 style="text-align: center">Les informations du site</h2>
+
+            <div style="display: flex; justify-content: space-around">
+                <a href="/administration/configuration/edit">Modifier</a>
+            </div>
+        </article>
+
+
+    </div>
+{% endblock %}

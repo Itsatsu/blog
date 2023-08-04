@@ -12,8 +12,9 @@ class User
     private $token;
     private $is_active;
     private $id;
+    private $role;
 
-    public function __construct($email, $password, $pseudo = null, $country = null, $password_confirm = null,)
+    public function __construct($email, $password= null , $pseudo = null, $country = null, $password_confirm = null,)
     {
         $this->email = $email;
         $this->password = $password;
@@ -120,6 +121,16 @@ class User
     public function removeToken()
     {
         $this->token = null;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 

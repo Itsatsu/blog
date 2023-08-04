@@ -1,62 +1,57 @@
 {% extends 'base.html.twig' %}
 {% block title %}Titre post{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="/public/assets/style/post.css">
+    <link rel="stylesheet" href="/public/assets/style/post.css">
 {% endblock %}
 {% block body %}
-    <div class="contenu">
-    <article class="post" >
-    <h1>{{ post.title }}</h1>
-        <h2>{{ post.subTitle }}</h2>
+    <div class="contenu ">
+        <article class="post">
+            <h1>{{ post.title }}</h1>
+            <h2>{{ post.subTitle }}</h2>
             <p>{{ post.content }}</p>
             <div class="info">
-                <p class="date">Auteur : {{ author.pseudo }}</p>
-                <p class="date">Date de création: {{  post.createdAt | date('d/m/Y H:i:s') }} </p>
+                <p class="date">Auteur : {{ post.user.pseudo }}</p>
+                <p class="date">Date de création: {{ post.createdAt | date('d/m/Y H:i:s') }} </p>
                 <p class="date">Date de modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
             </div>
 
-            </article>
+        </article>
+        {% if user is not null %}
             <div class="commentaire">
-                <form action="">
+                <form method="post">
                     <h2>Ajouter un commentaire</h2>
-                    <input type="texte" placeholder="Titre du commentaire">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Entrer ici le contenu de votre commentaire ...."></textarea>
+                    {% if errors is defined %}
+                        {% for key, value in errors %}
+                            <p class="alert alert-{{key}}">
+                                {{ value }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                    <input type="texte" placeholder="Titre du commentaire" name="comment[title]" required>
+                    <textarea id="" cols="30" rows="10"
+                              placeholder="Entrer ici le contenu de votre commentaire ...." name="comment[content]" required></textarea>
                     <input type="submit">
                 </form>
             </div>
+        {% else %}
+            <div class="commentaire">
+                <h3>Vous devez être connecté pour ajouter un commentaire</h3>
+            </div>
+        {% endif %}
+        {% for comment in comments %}
+        <article class="commentaire">
+            <h3>{{ comment.title }}</h3>
+            <p>{{ comment.content }}
+            </p>
+            <div class="info">
+                <p class="date">Auteur : {{ comment.user.pseudo }}</p>
+                <p class="date">Date du commentaire: 20/02/2023</p>
+            </div>
+            {% if user.id == comment.user.id %}
+                <a href="/comment/edit/{{ comment.id }}">Modifier mon commentaire</a>
+            {% endif %}
 
-            <article class="commentaire" >
-                <h3>Un commentaire</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-
-                </p>
-                <div class="info">
-                    <p class="date">Auteur : Itsatsu</p>
-                    <p class="date">Date du commentaire: 20/02/2023</p>
-                </div>
-
-            </article>
-            <article class="commentaire" >
-                <h3>Un commentaire</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-
-                </p>
-                <div class="info">
-                    <p class="date">Auteur : Itsatsu</p>
-                    <p class="date">Date du commentaire: 20/02/2023</p>
-                </div>
-
-            </article>
-            <article class="commentaire" >
-                <h3>Un commentaire</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam commodi mollitia accusamus possimus,
-
-                </p>
-                <div class="info">
-                    <p class="date">Auteur : Itsatsu</p>
-                    <p class="date">Date du commentaire: 20/02/2023</p>
-                </div>
-
-            </article>
+        </article>
+        {% endfor %}
     </div>
 {% endblock %}

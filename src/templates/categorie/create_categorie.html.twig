@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/modifpost.css">
+{% endblock %}
+{% block title %}Ajouter une catégorie{% endblock %}
+
+{% block body %}
+    <div>
+    <h2 >Création d'une catégorie</h2>
+    </div>
+    <div class="contenu">
+
+        <article class="post">
+            <form method="POST">
+                <h2>Ajouter une catégorie</h2>
+                <label for="title" style="color: white">Nom de la catégorie</label>
+                <input type="texte" name="create[name]" placeholder="Titre de la catégorie" id="title">
+                <br>
+                <input type="submit" value="Créer" name="create[submit]">
+            </form>
+        </article>
+        </div>
+{% endblock %}

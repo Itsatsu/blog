@@ -16,14 +16,14 @@
 
 <nav class="fond-gris menu">
     <div class="prenom">
-        <h1>Eric Gigondan</h1>
-
+    <br>
+    <br>
     </div>
 
     <div class="lien">
 
         <div >
-            <a href="./"><img src="/public/assets/images/Vectormaison.svg" alt=""><span>Accueil</span> </a>
+            <a href="/"><img src="/public/assets/images/Vectormaison.svg" alt=""><span>Accueil</span> </a>
         </div>
         <div>
         {% if user is not null %}
@@ -35,9 +35,21 @@
         <div>
             <a href="/posts"> <img src="/public/assets/images/Vectorexplore.svg" alt=""><span>Les postes</span></a>
         </div>
-        <div>
-            <a href="/posts/create"> <img src="/public/assets/images/Groupnewtopic.svg" alt=""><span>Ecrire</span></a>
-        </div>
+        {% if user is not null %}
+            <div>
+                <a href="/posts/create"> <img src="/public/assets/images/Groupnewtopic.svg" alt=""><span>Ecrire</span></a>
+            </div>
+        {% endif %}
+
+        {% if user is not null and user.role.name == "admin" %}
+            <div>
+                <a href="/administration"> <span>Panel admin</span></a>
+            </div>
+        {% endif %}
+
+
+
+
     </div>
     {% if message is not null  %}
         <div style="z-index: 10; background-color: #2B2C3E; border-radius: 15px ; padding: 5px 20px">

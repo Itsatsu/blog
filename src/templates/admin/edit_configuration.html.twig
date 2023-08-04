@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/modifpost.css">
+{% endblock %}
+{% block title %}Editer un post{% endblock %}
+
+{% block body %}
+    <div>
+    <h2 >Modification de la configuration</h2>
+
+    </div>
+    <div class="contenu">
+
+        <article class="post" >
+            <form method="POST" enctype="multipart/form-data">
+                <h2>Modifier votre configuration</h2>
+                {% if errors is defined %}
+                    {% for key, value in errors %}
+                        <p class="alert alert-{{key}}">
+                            {{ value }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+                <input type="texte" name="update[fullname]" placeholder="nom" value="{{ config.fullname }}" required>
+                <input type="texte" name="update[title]" placeholder="titre" value="{{ config.title}}" required>
+                <input type="texte" name="update[slogan]" placeholder="slogan" value="{{ config.slogan }}" required>
+                <input type="color" name="update[color_primary]"  value="{{ config.colorPrimary }}" required>
+                <input type="color" name="update[color_secondary]" value="{{ config.colorSecondary }}" required>
+                <input type="file" id="cv" name="cv" placeholder="{{ config.fileName }}" accept="application/pdf" >
+                <a href="/public/assets/uploads/cv.pdf" target="_blank">Fichier actuel : {{ config.fileName }}</a>
+                <br>
+                <input type="submit" value="Modifier">
+            </form>
+        </article>
+        </div>
+{% endblock %}

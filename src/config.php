@@ -7,7 +7,7 @@ if(!file_exists("../../../.env")){
     $secondaryColor = "#b3f8ff";
 }else {
     $configurationRepository = new ConfigurationRepository();
-    $configuration = $configurationRepository->findById(1);
+    $configuration = $configurationRepository->findById($configurationRepository->findOne());
     $primaryColor = $configuration->getColorPrimary();
     $secondaryColor = $configuration->getColorSecondary();
 

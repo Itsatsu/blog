@@ -76,6 +76,33 @@ class UserValidator
 
     }
 
+    public function validateUpdate()
+    {
+        $userRepository = new UserRepository();
+
+
+        if (empty($this->user->getEmail())) {
+            $this->addError('danger', "L'email est obligatoire.");
+        } elseif (!filter_var($this->user->getEmail(), FILTER_VALIDATE_EMAIL)) {
+            $this->addError('danger', "L'email n'est pas valide.");
+        }
+
+        if (strlen($this->user->getCountry()) < 3 || strlen($this->user->getCountry()) > 255) {
+            $this->addError('danger', "Le pays est obligatoire et doit contenir entre 3 et 255 caractères.");
+        }
+
+
+        if (strlen($this->user->getPseudo()) < 3 || strlen($this->user->getPseudo()) > 255) {
+            $this->addError('danger', "Le pseudo est obligatoire et doit contenir entre 3 et 255 caractères.");
+        }
+
+        if (empty($this->errors)) {
+            return true;
+        }
+        return false;
+
+    }
+
     public function getErrors()
     {
         return $this->errors;
