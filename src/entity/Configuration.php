@@ -12,7 +12,7 @@ class Configuration
     private $path;
     private $file_name;
 
-    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $path, $file_name)
+    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $path = null, $file_name =null, $id = null)
     {
         $this->fullname = $fullname;
         $this->title = $title;
@@ -21,10 +21,16 @@ class Configuration
         $this->color_secondary = $color_secondary;
         $this->path = $path;
         $this->file_name = $file_name;
+        $this->id = $id;
     }
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 
     public function getFullname()
@@ -87,12 +93,12 @@ class Configuration
         $this->path = $path;
     }
 
-    public function getFilename()
+    public function getFileName()
     {
         return $this->file_name;
     }
 
-    public function setFilename($file_name): void
+    public function setFileName($file_name): void
     {
         $this->file_name = $file_name;
     }

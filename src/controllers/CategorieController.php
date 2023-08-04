@@ -14,13 +14,13 @@ use Validators\CategorieValidator;
 
 class CategorieController extends Controller
 {
-    function show()
+    public function show()
     {
         $session = new Session();
         $userRepository = new UserRepository();
         $categorieRepository = new CategorieRepository();
         $user = $userRepository->findById($session->get('user'));
-        if($user->getRole()['name'] != 'admin'){
+        if ($user->getRole()['name'] != 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
@@ -34,13 +34,13 @@ class CategorieController extends Controller
 
     }
 
-    function edit($params)
+    public function edit($params)
     {
 
         $session = new Session();
         $userRepository = new UserRepository();
         $user = $userRepository->findById($session->get('user'));
-        if($user->getRole()['name'] != 'admin'){
+        if ($user->getRole()['name'] != 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
@@ -51,61 +51,58 @@ class CategorieController extends Controller
 
         $categorieRepository = new CategorieRepository();
         $categorie = $categorieRepository->findById($params['id']);
-        if ($request->get('update') != null) {
-            $categorie->setName($request->get('update')['name']);
-            $categorieRepository->update($categorie);
-            $session->setMessage('success', 'Votre catégorie a bien été modifié');
-            header('Location: /administration/categorie');
+        if ($request->get('update') == null) {
+            return $this->view('/categorie/edit.html.twig', [
+                'categorie' => $categorie,
+                'user' => $user,
+            ]);
         }
-
-                return $this->view('/categorie/edit.html.twig', [
-                    'categorie' => $categorie,
-                    'user' => $user,
-                ]);
+        $categorie->setName($request->get('update')['name']);
+        $categorieRepository->update($categorie);
+        $session->setMessage('success', 'Votre catégorie a bien été modifié');
+        header('Location: /administration/categorie');
 
 
     }
 
-    function new()
+    public function new()
     {
         $session = new Session();
         $userRepository = new UserRepository();
         $user = $userRepository->findById($session->get('user'));
-        if($user->getRole()['name'] != 'admin'){
+        if ($user->getRole()['name'] != 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
         $request = new HttpRequest();
 
-        if ($request->get('create') != null) {
-            $categorieRepository = new CategorieRepository();
-            $sendCategorie = $request->get('create');
-            $categorie = new Categorie($sendCategorie['name']);
-            $categorieValidator = new CategorieValidator($categorie);
-            if ($categorieValidator->validate()){
-                $categorieRepository->create($categorie);
-                $session->setMessage('success', 'Votre catégorie a bien été créer');
-                header('Location: /administration/categorie');
-            }
+        if ($request->get('create') == null) {
             return $this->view('/categorie/create_categorie.html.twig', [
                 'user' => $user,
-                'errors' => $categorieValidator->getErrors(),
             ]);
+        }
+        $categorieRepository = new CategorieRepository();
+        $sendCategorie = $request->get('create');
+        $categorie = new Categorie($sendCategorie['name']);
+        $categorieValidator = new CategorieValidator($categorie);
+        if ($categorieValidator->validate()) {
+            $categorieRepository->create($categorie);
+            $session->setMessage('success', 'Votre catégorie a bien été créer');
+            header('Location: /administration/categorie');
         }
         return $this->view('/categorie/create_categorie.html.twig', [
             'user' => $user,
+            'errors' => $categorieValidator->getErrors(),
         ]);
     }
 
 
+    public function show_all_edit_post()
+    {
 
+        return $this->view('/posts/show_all_edit_post.html.twig');
 
-function show_all_edit_post()
-{
-
-    return $this->view('/posts/show_all_edit_post.html.twig');
-
-}
+    }
 
 
 }

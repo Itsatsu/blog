@@ -86,7 +86,11 @@ class PostRepository
         if (!$data) {
             return null;
         }
-        $post = new post($data['categorie_id'], $data['user_id'], $data['title'], $data['content'], $data['subtitle'], $data['created_at'], $data['updated_at'], $data['is_validated'],$data['id']);
+        $stmt2 = $this->pdo->prepare('SELECT * FROM user WHERE id = :id');
+        $stmt2->bindParam(':id', $data['user_id']);
+        $stmt2->execute();
+        $user = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $post = new post($data['categorie_id'], $user, $data['title'], $data['content'], $data['subtitle'], $data['created_at'], $data['updated_at'], $data['is_validated'],$data['id']);
         return $post;
     }
 
@@ -112,7 +116,12 @@ class PostRepository
         $posts = [];
         $i = 0;
         foreach ($data as $line) {
-            $post = new post($line['categorie_id'], $line['user_id'], $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
+            $stmt2 = $this->pdo->prepare('SELECT * FROM user WHERE id = :id');
+            $stmt2->bindParam(':id', $line['user_id']);
+            $stmt2->execute();
+            $user = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $post = new post($line['categorie_id'], $user, $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
             $posts[$i] = $post;
             $i++;
         }
@@ -147,7 +156,12 @@ class PostRepository
         $posts = [];
         $i = 0;
         foreach ($data as $line) {
-            $post = new post($line['categorie_id'], $line['user_id'], $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
+            $stmt2 = $this->pdo->prepare('SELECT * FROM user WHERE id = :id');
+            $stmt2->bindParam(':id', $line['user_id']);
+            $stmt2->execute();
+            $user = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $post = new post($line['categorie_id'], $user, $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
             $posts[$i] = $post;
             $i++;
         }
@@ -166,7 +180,12 @@ class PostRepository
         $posts = [];
         $i = 0;
         foreach ($data as $line) {
-            $post = new post($line['categorie_id'], $line['user_id'], $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
+            $stmt2 = $this->pdo->prepare('SELECT * FROM user WHERE id = :id');
+            $stmt2->bindParam(':id', $line['user_id']);
+            $stmt2->execute();
+            $user = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $post = new post($line['categorie_id'], $user, $line['title'], $line['content'], $line['subtitle'], $line['created_at'], $line['updated_at'], $line['is_validated'], $line['id']);
             $posts[$i] = $post;
             $i++;
         }
