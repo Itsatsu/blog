@@ -19,9 +19,10 @@ class CategorieValidator
 
         $categorieRepository = new CategorieRepository();
 
-        if (empty($this->categorie->getName())) {
-            $this->addError('danger', "Le nom est obligatoire.");
+        if (strlen($this->categorie->getName()) < 3 || strlen($this->categorie->getName()) > 50) {
+            $this->addError('danger', "Le nom de la catégorie est obligatoire et doit faire entre 3 et 50 caractères.");
         }
+
 
         if (empty($this->errors)) {
             return true;

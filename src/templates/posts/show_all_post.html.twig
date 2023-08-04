@@ -18,15 +18,17 @@
                     <h2>{{ post.title }}</h2>
                     <h3>{{ post.subtitle }}</h3>
                     <p>{{ post.content | slice(0,150) }}</p>
+                    <p>Auteur : {{ post.user.pseudo }}</p>
                     <p class="date">Date de modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
+
                     <div style="display: flex; justify-content: space-between">
-                        {% if user.id == post.user %}
+                        {% if user.id == post.user.id %}
                             <a href="/posts/detail/{{ post.id }}">Voir mon post complet</a>
                         {% else %}
                             <a href="/posts/detail/{{ post.id }}">Voir le post complet</a>
                         {% endif %}
-                        {% if user.id == post.user %}
-                            <a href="/posts/modification/{{ post.id }}">Modifier mon post</a>
+                        {% if user.id == post.user.id %}
+                            <a href="/posts/edit/{{ post.id }}">Modifier mon post</a>
                         {% endif %}
                     </div>
 
@@ -41,15 +43,16 @@
                     <h2>{{ post.title }}</h2>
                     <h3>{{ post.subtitle }}</h3>
                     <p>{{ post.content| slice(0,150) }}</p>
+                    <p>Auteur : {{ post.user.pseudo }}</p>
                     <p class="date">Date modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
                     <div style="display: flex; justify-content: space-between">
-                        {% if user.id == post.user %}
+                        {% if user.id == post.user.id%}
                             <a href="/posts/detail/{{ post.id }}">Voir mon post complet</a>
                         {% else %}
                             <a href="/posts/detail/{{ post.id }}">Voir le post complet</a>
                         {% endif %}
-                        {% if user.id == post.user %}
-                            <a href="/posts/modification/{{ post.id }}">Modifier mon post</a>
+                        {% if user.id == post.user.id%}
+                            <a href="/posts/edit/{{ post.id }}">Modifier mon post</a>
                         {% endif %}
                     </div>
                 </article>

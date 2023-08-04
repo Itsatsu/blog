@@ -14,6 +14,13 @@
         <article class="post">
             <form method="POST">
                 <h2>Ajouter un role</h2>
+                {% if errors is defined %}
+                    {% for key, value in errors %}
+                        <p class="alert alert-{{key}}">
+                            {{ value }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
                 <label for="title" style="color: white">Nom du role</label>
                 <input type="texte" name="create[name]" placeholder="Nom du role" id="title">
                 <br>

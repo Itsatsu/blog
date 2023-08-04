@@ -22,17 +22,18 @@ class PostValidator
             $this->addError('danger', "La catégorie est obligatoire.");
         }
 
-        if (empty($this->post->getContent())) {
-            $this->addError('danger', "Le contenu est obligatoire.");
+        if(strlen($this->post->getContent())<3 ||strlen($this->post->getContent()) > 255 ){
+            $this->addError('danger', "Le contenue est obligatoire et doit contenir entre 3 et 255 caractères.");
         }
 
-        if (empty($this->post->getSubtitle())) {
-            $this->addError('danger', "Le sous-titre est obligatoire.");
+        if(strlen($this->post->getSubtitle())<3 ||strlen($this->post->getSubtitle()) > 255 ){
+            $this->addError('danger', "Le sous-titre est obligatoire et doit contenir entre 3 et 255 caractères.");
         }
 
-        if (empty($this->post->getTitle())) {
-            $this->addError('danger', 'Le titre est obligatoire.');
+        if(strlen($this->post->getTitle())<3 ||strlen($this->post->getTitle()) > 255 ){
+            $this->addError('danger', "Le titre est obligatoire et doit contenir entre 3 et 255 caractères.");
         }
+
 
         if (empty($this->errors)) {
             return true;

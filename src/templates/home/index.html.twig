@@ -6,13 +6,13 @@
 {% block body %}
 
     <div>
-        <h2 >Je suis Eric Gigondan</h2>
+        <h2 >Je suis {{ info.fullname }}</h2>
     </div>
     <div class="contenu">
         <div class="post">
         <img src="photo.jpg" alt="Photo de profil">
-        <p>Je Développe, Déploie et Maintiens les applications et leurs serveurs </p>
-        <a href="cv.pdf" download><button>Télécharger mon CV</button></a>
+        <p>{{ info.slogan }}</p>
+        <a href="public/assets/uploads/cv.pdf" download><button>Télécharger mon CV</button></a>
         </div>
         <form action="#" method="post">
 
@@ -25,7 +25,7 @@
         </form>
         <p>Retrouvez-moi sur :</p>
         <ul>
-            <li><a href="https://github.com/votre-nom">GitHub</a></li>
+            <li><a href="https://github.com/{{ info.fullname }}">GitHub</a></li>
             <!-- Ajouter d'autres liens ici -->
         </ul>
     </div>

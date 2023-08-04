@@ -13,7 +13,14 @@
 
         <article class="post" >
             <form method="POST">
-                <h2>Modifier votre post</h2>
+                <h2>Modifier le nom de la catégorie</h2>
+                {% if errors is defined %}
+                    {% for key, value in errors %}
+                        <p class="alert alert-{{key}}">
+                            {{ value }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
                 <input type="texte" name="update[name]" placeholder="{{ categorie.name }}" value="{{ categorie.name }}">
                 <input type="submit" value="Modifier">
             </form>
