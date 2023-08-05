@@ -147,7 +147,7 @@ justify-content: center;
 }
 .contenu{
 position: absolute;
-left: 18% !important;
+
 width: 80%;
 display: flex;
 flex-direction: column;
