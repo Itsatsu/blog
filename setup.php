@@ -30,6 +30,10 @@
     <input type="submit" name="submit" value="Enregister les informations">
 </form>
 
+
+</body>
+</html>
+
 <?php
 error_reporting(0);
 $setup = "setup2.php";
@@ -62,6 +66,7 @@ if (isset($_POST['submit'])) {
         fwrite($file, "DB_HOST=".$db_address."\n");
         fwrite($file, "DB_PORT=".$db_port."\n");
         fwrite($file, "DB_DATABASE=$db_name\n");
+        fclose($file);
         $pdo = new PDO("mysql:host=$db_address", $db_login, $db_password, $options);
         $sql = file_get_contents('installation.sql');
         $pdo->exec($sql);
@@ -69,5 +74,3 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-</body>
-</html>

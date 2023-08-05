@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}Titre post{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/post.css">
+    <style>
+        label {
+            color: white;
+            margin-top: 15px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="contenu">
+        <article class="post" style="width: 100vh;">
+            <h1>Mon profil:</h1>
+
+            <h2>Mes information : </h2>
+            <form method="POST">{% if errors is defined %}
+                    {% for key, value in errors %}
+                        <p class="alert alert-{{key}}">
+                            {{ value }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+
+                <label for="pseudo">Pseudo :</label>
+                <input type="text" name="profil[pseudo]" id="pseudo" name="pseudo" value="{{ user.pseudo }}">
+                <label for="email">Email :</label>
+                <input type="text" name="profil[email]" id="email" name="email" value="{{ user.email }}">
+                <label for="country">Pays :</label>
+                <input type="text" name="profil[country]" id="country" name="country" value="{{ user.country }}">
+                <input type="submit" value="Modifier">
+
+            </form>
+            <form method="POST" style="margin-top: 10px">
+                <input type="submit" name="resetPassword" value="Réinitialiser le mot de passe">
+            </form>
+            <a href="/logout">déconnexion</a>
+        </article>
+    </div>
+{% endblock %}

@@ -6,27 +6,41 @@
 {% block body %}
 
     <div>
-        <h2 >Je suis Eric Gigondan</h2>
+        <h2 >Je suis {{ info.fullname }}</h2>
     </div>
     <div class="contenu">
         <div class="post">
-        <img src="photo.jpg" alt="Photo de profil">
-        <p>Je Développe, Déploie et Maintiens les applications et leurs serveurs </p>
-        <a href="cv.pdf" download><button>Télécharger mon CV</button></a>
+        <img src="public/assets/uploads/profil.png" alt="Photo de profil" width="150px">
+            <p>{{ info.title }}</p>
+        <p>{{ info.slogan }}</p>
+        <a href="public/assets/uploads/cv.pdf" download><button>Télécharger mon CV</button></a>
         </div>
-        <form action="#" method="post">
+        <form method="post" style="display: flex; align-items: center;">
+            <h3>Me contacter</h3>
+            {% if errors is defined %}
+                {% for key, value in errors %}
+                    <p class="alert alert-{{key}}">
+                        {{ value }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+            <input type="text" id="firstname" name="create[firstname]" placeholder="prénom" required>
+            <input type="text" id="lastname" name="create[lastname]" placeholder="nom" required>
+            <input type="email" id="email" name="create[email]" placeholder="Email" required>
 
-            <input type="text" id="nom" name="nom"  placeholder="Nom et prénom" required>
-
-            <input type="email" id="email" name="email" placeholder="Email" required>
-
-            <textarea id="message" name="message" rows="5" placeholder="Entrer votre message ici ..." required></textarea>
+            <textarea id="message" name="create[message]" rows="5" placeholder="Entrer votre message ici ..." required></textarea>
             <input type="submit" value="Envoyer">
         </form>
-        <p>Retrouvez-moi sur :</p>
-        <ul>
-            <li><a href="https://github.com/votre-nom">GitHub</a></li>
-            <!-- Ajouter d'autres liens ici -->
+        <ul style="display: flex; justify-content: space-around;">
+            {% if info.x is not null %}
+            <li><a href="{{ info.github }}">GitHub</a></li>
+            {% endif %}
+            {% if info.x is not null %}
+            <li><a href="{{ info.linkedin }}">LinkedIn</a></li>
+            {% endif %}
+            {% if info.x is not null %}
+            <li><a href="{{ info.x }}">X</a></li>
+            {% endif %}
         </ul>
     </div>
 {% endblock %}

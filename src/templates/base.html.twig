@@ -12,25 +12,58 @@
     <div class="elipse1"></div>
     <div class="elipse2"></div>
     <div class="elipse3"></div>
+
+
 <nav class="fond-gris menu">
     <div class="prenom">
-        <h1>Eric Gigondan</h1>
-
+    <br>
+    <br>
     </div>
+
     <div class="lien">
+
         <div >
-            <a href="./"><img src="/public/assets/images/Vectormaison.svg" alt=""><span>Accueil</span> </a>
+            <a href="/"><img src="/public/assets/images/Vectormaison.svg" alt=""><span>Accueil</span> </a>
+        </div>
+        <div>
+        {% if user is not null %}
+            <a href="/profil"> <img src="/public/assets/images/person.svg" alt=""><span>Mon Profil</span></a>
+        {% else %}
+            <a href="/login"> <img src="/public/assets/images/person.svg" alt=""><span>Connexion</span></a>
+        {% endif %}
         </div>
         <div>
             <a href="/posts"> <img src="/public/assets/images/Vectorexplore.svg" alt=""><span>Les postes</span></a>
         </div>
-        <div>
-            <a href="#"> <img src="/public/assets/images/Groupnewtopic.svg" alt=""><span>Home</span></a>
-        </div>
+        {% if user is not null %}
+            <div>
+                <a href="/posts/create"> <img src="/public/assets/images/Groupnewtopic.svg" alt=""><span>Ecrire</span></a>
+            </div>
+        {% endif %}
+
+        {% if user is not null and user.role.name == "admin" %}
+            <div>
+                <a href="/administration"> <span>Dashboard admin</span></a>
+            </div>
+        {% endif %}
+
+
+
+
     </div>
+    {% if message is not null  %}
+        <div style="z-index: 10; background-color: #2B2C3E; border-radius: 15px ; padding: 5px 20px">
+            <p>INFORMATION: </p>
+            <p class="alert-{{message.type}}"> {{ message.value }}</p>
+        </div>
+    {% endif %}
 </nav>
 
-{% block body %}{% endblock %}
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+
 </div>
 <footer><!-- Contenu de mon footer --></footer>
 </body>

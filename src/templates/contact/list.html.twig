@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/allpost.css">
+{% endblock %}
+{% block title %}Dashboard:liste des messages{% endblock %}
+
+{% block body %}
+    <div>
+        <h2>Liste des messages</h2>
+    </div>
+    <div class="contenu">
+
+    <div class="col">
+        {% for contact in contacts %}
+            {% if loop.index is even %}
+                <article class="post">
+                    <h1>Message de {{ contact.firstname }} {{ contact.lastname }} </h1>
+                    <p>Message : {{ contact.message }}</p>
+                    <h3>Email : {{ contact.email }}</h3>
+                    <div style="display: flex; justify-content:space-around">
+                        <a href="/administration/contact/delete/{{ contact.id }}">Supprimer </a>
+                    </div>
+                </article>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col">
+        {% for contact in contacts %}
+            {% if loop.index is odd %}
+                <article class="post">
+                    <h1>Message de {{ contact.firstname }} {{ contact.lastname }} </h1>
+                    <p>Message : {{ contact.message }}</p>
+                    <h3>Email : {{ contact.email }}</h3>
+
+                    <div style="display: flex; justify-content:space-around">
+                        <a href="/administration/contact/delete/{{ contact.id }}">Supprimer </a>
+                    </div>
+                </article>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

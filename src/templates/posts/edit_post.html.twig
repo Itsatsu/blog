@@ -3,21 +3,42 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="/public/assets/style/modifpost.css">
 {% endblock %}
-{% block title %}Les posts{% endblock %}
+{% block title %}Editer un post{% endblock %}
 
 {% block body %}
     <div>
-    <h2 >Création d'un post</h2>
+    <h2 >modification d'un post</h2>
     </div>
     <div class="contenu">
 
-        <article class="post">
-            <form action="">
-                <h2>Ajouter un post</h2>
-                <input type="texte" placeholder="Un titre">
-                <input type="texte" placeholder="Un chapô">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Entrer ici le contenu de votre post ...."></textarea>
-                <input type="submit" value="Poster">
+        <article class="post" >
+            <form method="POST">
+                <h2>Modifier votre post</h2>
+                {% if errors is defined %}
+                    {% for key, value in errors %}
+                        <p class="alert alert-{{key}}">
+                            {{ value }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+                <input type="texte" name="update[title]" placeholder="{{ post.title }}" value="{{ post.title }}">
+                <input type="texte" name="update[subtitle]" placeholder="{{ post.subtitle }}" value="{{ post.subtitle}}">
+                <textarea name="update[content]" id="" cols="30" rows="10" placeholder="{{ post.content }}">{{ post.content}}</textarea>
+                <select name="update[categorie]">
+                    {% for categorie in categories %}
+                        {% if categorie.id == post.id_categorie %}
+                            <option value="{{ categorie.id }}" selected>{{ categorie.name }}</option>
+                        {% else %}
+                            <option value="{{ categorie.id }}">{{ categorie.name }}</option>
+                        {% endif %}
+                      {% endfor %}
+                </select>
+                <div style="display: flex; justify-content: space-between; width: 80%">
+                    <p>Date de création: {{ post.createdAt | date('d/m/Y H:i:s') }}</p>
+                    <p>Date de la dernière modification: {{ post.updatedAt | date('d/m/Y H:i:s') }}</p>
+                </div>
+
+                <input type="submit" value="Modifier">
             </form>
         </article>
         </div>

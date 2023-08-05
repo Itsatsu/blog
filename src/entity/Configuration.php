@@ -3,21 +3,41 @@
 namespace entity;
 class Configuration
 {
+    private $id;
     private $fullname;
     private $title;
     private $slogan;
     private $color_primary;
     private $color_secondary;
-    private $cv;
+    private $github;
+    private $linkedin;
+    private $x;
+    private $path;
+    private $file_name;
 
-    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $cv)
+    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $github = null, $linkedin = null, $x = null, $path = null, $file_name =null, $id = null)
     {
         $this->fullname = $fullname;
         $this->title = $title;
         $this->slogan = $slogan;
         $this->color_primary = $color_primary;
         $this->color_secondary = $color_secondary;
-        $this->cv = $cv;
+        $this->path = $path;
+        $this->file_name = $file_name;
+        $this->id = $id;
+        $this->github = $github;
+        $this->linkedin = $linkedin;
+        $this->x = $x;
+
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 
     public function getFullname()
@@ -70,14 +90,56 @@ class Configuration
         $this->color_secondary = $color_secondary;
     }
 
-    public function getCv()
+    public function getPath()
     {
-        return $this->cv;
+        return $this->path;
     }
 
-    public function setCv($cv): void
+    public function setPath($path): void
     {
-        $this->cv = $cv;
+        $this->path = $path;
     }
+
+    public function getFileName()
+    {
+        return $this->file_name;
+    }
+
+    public function setFileName($file_name): void
+    {
+        $this->file_name = $file_name;
+    }
+
+    public function getGithub()
+    {
+        return $this->github;
+    }
+
+    public function setGithub($github): void
+    {
+        $this->github = $github;
+    }
+
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin($linkedin): void
+    {
+        $this->linkedin = $linkedin;
+    }
+
+    public function getX()
+    {
+        return $this->x;
+    }
+
+    public function setX($x): void
+    {
+        $this->x = $x;
+    }
+
+
 
 }

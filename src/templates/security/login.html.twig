@@ -4,13 +4,24 @@
     <link rel="stylesheet" href="/public/assets/style/login.css">
 {% endblock %}
 {% block body %}
-        <h1>Connexion</h1>
-        <p>Vous n'avez pas de compte ?  <a href="signup">S'enregister</a></p>
 
 
-        <form action="">
-            <input type="email" name="" id="email" placeholder="Email">
-            <input type="password" name="" id="password" placeholder="**********">
-            <input type="submit" name="" id="sub" value="Connexion">
-        </form>
+
+    <h1>Connexion</h1>
+    <p>Vous n'avez pas de compte ? <a href="signup">S'enregister</a></p>
+
+    {% if errors is defined %}
+        {% for key, value in errors %}
+            <p class="alert alert-{{key}}">
+                {{ value }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        <input type="email" name="connection[email]" id="email" placeholder="Email">
+        <input type="password" name="connection[password]" id="password" placeholder="**********">
+        <input type="submit" name="connection[submit]" id="sub" value="Connexion">
+    </form>
+    <a href="lostpass">Mot de passe oublié ?</a>
 {% endblock %}

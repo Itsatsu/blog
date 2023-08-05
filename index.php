@@ -8,9 +8,12 @@ $setup = 'setup.php';
 
 
 if(!file_exists(".env")){
+    $primaryColor = "#d1f8b3";
+    $secondaryColor = "#b3f8ff";
     header('Location: '.$setup);
     exit();
 }else{
+    require_once "src/config.php";
     Route::run();
 }
 

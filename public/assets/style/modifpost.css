@@ -1,57 +1,63 @@
 @media (max-width: 900px) {
-    
-    article{
+
+    article {
         background: #2B2C3E;
         width: 90% !important;
         margin-bottom: 30px;
-        
+
     }
-    .contenu{
+
+    .contenu {
         justify-content: center;
         display: flex;
         width: 100% !important;
 
     }
+
     .post h2 {
         text-align: center;
     }
 
-    }
-    
-    .post h1{
+}
+
+.post h1 {
     text-align: center;
-    }
-     .post h2 {
-        margin: 20px;
-    }
-    .post{
-        padding-top: 20px ;
-        padding-bottom: 50px ;
-        margin-bottom: 70px;
-    }
-    
-    article{
-        background: #2B2C3E;
-        width: 100% ;
-        margin-bottom: 30px;
-        padding: 15px;
-        border-radius: 16px;
-    }
-    .contenu{
-        width: 80%;
-        padding-top: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+}
 
-        align-items: center;
-    }
+.post h2 {
+    margin: 20px;
+}
 
-    form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.post {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    margin-bottom: 70px;
+}
+
+article {
+    background: #2B2C3E;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 16px;
+}
+
+.contenu {
+    left: 18%;
+    width: 80%;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
     

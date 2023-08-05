@@ -8,13 +8,13 @@
         
     }
     .contenu{
-        
+        width: 100% !important;
         display: flex;
         flex-direction: column !important;
         justify-content: space-between;
     }
     .col{
-        max-width: 100% !important;
+        width: 100% !important;
     }
     }
     
@@ -26,13 +26,15 @@
         border-radius: 16px;
     }
     .contenu{
+        left: 18%;
+        width: 80%;
         padding-top: 100px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
     .col{
-        max-width: 50%;
+        width: 50%;
     }
 
     article p{
