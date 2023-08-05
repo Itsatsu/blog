@@ -11,7 +11,7 @@ class Contact
     private $lastname;
     private $firstname;
 
-    public function __construct($email, $message, $lastname, $firstname, $id = null)
+    public function __construct($firstname,$lastname,$email,$message, $id = null)
     {
         $this->email = $email;
         $this->message = $message;

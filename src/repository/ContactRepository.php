@@ -4,8 +4,7 @@ namespace Repository;
 
 
 use DateTime;
-use Entity\Comment;
-use entity\Contact;
+use Entity\Contact;
 use PDO;
 use Core\Database;
 
@@ -21,8 +20,6 @@ class ContactRepository
 
     public function create(Contact $contact)
     {
-        $time = new DateTime();
-
         $stmt = $this->pdo->prepare('INSERT INTO contact ( firstname, lastname, email, message) VALUES (:firstname, :lastname, :email, :message)');
 
         $params = [
@@ -49,10 +46,9 @@ class ContactRepository
         return $stmt->rowCount();
     }
 
-
     public function findById($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM comment WHERE id = :id');
+        $stmt = $this->pdo->prepare('SELECT * FROM contact WHERE id = :id');
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -63,7 +59,8 @@ class ContactRepository
         return $contact;
     }
 
-    public function findAll(){
+    public function findAll()
+    {
         $stmt = $this->pdo->prepare('SELECT * FROM contact');
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

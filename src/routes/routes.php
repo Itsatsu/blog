@@ -3,7 +3,7 @@
 use Controllers\AdminController;
 use Controllers\CategorieController;
 use Controllers\CommentController;
-use controllers\ContactController;
+use Controllers\ContactController;
 use Controllers\HomeController;
 use Controllers\PostController;
 use Controllers\RoleController;
