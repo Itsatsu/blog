@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Titre post{% endblock %}
+{% block title %}Detail commentaire{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="/public/assets/style/post.css">
 {% endblock %}
@@ -9,7 +9,7 @@
             <h1>{{ comment.title }}</h1>
             <p>{{ comment.content }}</p>
             <div class="info">
-                <p class="date">Auteur : {{ author.pseudo }}</p>
+                <p class="date">Auteur : {{ comment.user.pseudo }}</p>
                 <p class="date">Date de création: {{ comment.createdAt | date('d/m/Y H:i:s') }} </p>
                 <p class="date">Date de modification: {{ comment.updatedAt | date('d/m/Y H:i:s') }}</p>
             </div>

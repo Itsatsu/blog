@@ -40,6 +40,8 @@ color: #404251;
 .container{
 margin-left: 0% !important;
 margin-right: 0%!important;
+width: 100% !important;
+
 display: flex;
 justify-content: center;
 }
@@ -88,9 +90,10 @@ text-align: center;
 margin-top: 0px !important;
 }
 .contenu{
-
+width: 100% !important;
 left: 0% !important;
-
+justify-content: center;
+display: flex;
 text-align: center;
 
 }
@@ -144,7 +147,8 @@ justify-content: center;
 }
 .contenu{
 position: absolute;
-left: 18%;
+left: 18% !important;
+width: 80%;
 display: flex;
 flex-direction: column;
 justify-content: center;

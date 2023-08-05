@@ -64,3 +64,6 @@ Route::meth('/administration/user/index', SecurityController::class, 'index');
 
 //configuration
 Route::meth('/administration/configuration/edit', AdminController::class, 'configuration');
+
+//404
+Route::meth('/404', HomeController::class, 'error404');

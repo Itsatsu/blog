@@ -1,12 +1,7 @@
 @media (max-width: 900px) {
     
 
-    .contenu{
-        justify-content: center;
-        display: flex;
 
-        justify-content: space-between;
-    }
 
     }
     form{
@@ -15,14 +10,7 @@
         flex-direction: column;
         width: 100%;
     }
-    .contenu{
-        padding-top: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 80%;
-        align-items: center;
-    }
+
     .post {
         background: #2B2C3E;
         width: 90%;

@@ -9,10 +9,13 @@ class Configuration
     private $slogan;
     private $color_primary;
     private $color_secondary;
+    private $github;
+    private $linkedin;
+    private $x;
     private $path;
     private $file_name;
 
-    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $path = null, $file_name =null, $id = null)
+    public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $github = null, $linkedin = null, $x = null, $path = null, $file_name =null, $id = null)
     {
         $this->fullname = $fullname;
         $this->title = $title;
@@ -22,6 +25,10 @@ class Configuration
         $this->path = $path;
         $this->file_name = $file_name;
         $this->id = $id;
+        $this->github = $github;
+        $this->linkedin = $linkedin;
+        $this->x = $x;
+
     }
     public function getId()
     {
@@ -102,5 +109,37 @@ class Configuration
     {
         $this->file_name = $file_name;
     }
+
+    public function getGithub()
+    {
+        return $this->github;
+    }
+
+    public function setGithub($github): void
+    {
+        $this->github = $github;
+    }
+
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin($linkedin): void
+    {
+        $this->linkedin = $linkedin;
+    }
+
+    public function getX()
+    {
+        return $this->x;
+    }
+
+    public function setX($x): void
+    {
+        $this->x = $x;
+    }
+
+
 
 }

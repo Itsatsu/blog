@@ -29,7 +29,6 @@ class CommentController extends Controller
 
         return $this->view('/comment/detail.html.twig', [
             'user' => $user,
-            'author' => $userRepository->findById($comment->getUser()),
             'comment' => $comment,
             'message' => $session->getMessage(),
         ]);
