@@ -29,7 +29,7 @@ class ContactValidator
         } elseif (!filter_var($this->contact->getEmail(), FILTER_VALIDATE_EMAIL)) {
             $this->addError('danger', "L'email n'est pas valide.");
         }
-        
+
         if(strlen($this->contact->getLastname())<3 ||strlen($this->contact->getLastname()) > 255 ){
             $this->addError('danger', "Le nom est obligatoire et doit contenir entre 3 et 255 caractères.");
         }

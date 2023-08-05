@@ -52,7 +52,8 @@ class AdminController extends Controller
         }
         $sendconfig = $request->get('update');
         $cv = $_FILES['cv'];
-        $config = new Configuration($sendconfig['fullname'], $sendconfig['title'], $sendconfig['slogan'], $sendconfig['color_primary'], $sendconfig['color_secondary']);
+        $profil = $_FILES['profil'];
+        $config = new Configuration($sendconfig['fullname'], $sendconfig['title'], $sendconfig['slogan'], $sendconfig['color_primary'], $sendconfig['color_secondary'], $sendconfig['github'], $sendconfig['linkedin'], $sendconfig['x']  );
         $validator = new ConfigurationValidator($config);
         if (!$validator->validate()) {
             return $this->view('/admin/edit_configuration.html.twig', [
@@ -62,15 +63,21 @@ class AdminController extends Controller
                 'errors' => $validator->getErrors(),
             ]);
         }
-        move_uploaded_file($cv['tmp_name'], "public/assets/uploads/" . "cv.pdf");
+
         $id = $configRepository->findOne();
         if ($cv['tmp_name'] == "") {
             $path = $configRepository->findById($id)->getPath();
             $fileName = $configRepository->findById($id)->getFileName();
         } else {
+            move_uploaded_file($cv['tmp_name'], "public/assets/uploads/" . "cv.pdf");
             $fileName = $cv['name'];
             $path = "public/assets/uploads/cv.pdf";
         }
+
+        if (!$profil['tmp_name'] == "") {
+            move_uploaded_file($profil['tmp_name'], "public/assets/uploads/" . "profil.png");
+        }
+
         $config->setPath($path);
         $config->setFileName($fileName);
         $config->setId($id);

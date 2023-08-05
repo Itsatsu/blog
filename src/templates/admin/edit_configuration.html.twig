@@ -25,10 +25,15 @@
                 <input type="texte" name="update[fullname]" placeholder="nom" value="{{ config.fullname }}" required>
                 <input type="texte" name="update[title]" placeholder="titre" value="{{ config.title}}" required>
                 <input type="texte" name="update[slogan]" placeholder="slogan" value="{{ config.slogan }}" required>
+                <input type="text" name="update[github]" placeholder=" lien github" value="{{ config.github }}">
+                <input type="text" name="update[linkedin]" placeholder="lien linkedin" value="{{ config.linkedin }}">
+                <input type="text" name="update[x]" placeholder="lien X" value="{{ config.x }}">
                 <input type="color" name="update[color_primary]"  value="{{ config.colorPrimary }}" required>
                 <input type="color" name="update[color_secondary]" value="{{ config.colorSecondary }}" required>
                 <input type="file" id="cv" name="cv" placeholder="{{ config.fileName }}" accept="application/pdf" >
                 <a href="/public/assets/uploads/cv.pdf" target="_blank">Fichier actuel : {{ config.fileName }}</a>
+                <input type="file" id="profil" name="profil" accept=" image/png" >
+                <a href="/public/assets/uploads/profil.png" target="_blank">image du profil actuelle</a>
                 <br>
                 <input type="submit" value="Modifier">
             </form>
