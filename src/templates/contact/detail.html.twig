@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detail contact{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/public/assets/style/post.css">
+{% endblock %}
+{% block body %}
+    <div class="contenu ">
+        <article class="post">
+            <h1>Message de {{ contact.firstname }} {{ contact.lastname }} </h1>
+            <p>Email : {{ contact.email }}</p>
+            <p>Message : {{ contact.message }}</p>
+            <div style="display: flex; justify-content:space-around">
+                <a href="/administration/comments/delete/{{ comment.id }}">Supprimer </a>
+            </div>
+        </article>
+    </div>
+{% endblock %}
