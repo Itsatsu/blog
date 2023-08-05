@@ -3,6 +3,7 @@
 use Controllers\AdminController;
 use Controllers\CategorieController;
 use Controllers\CommentController;
+use Controllers\ContactController;
 use Controllers\HomeController;
 use Controllers\PostController;
 use Controllers\RoleController;
@@ -53,6 +54,10 @@ Route::meth('/administration/comments/detail/{id}', CommentController::class, 'd
 Route::meth('/administration/comments/validation/{id}', CommentController::class, 'validation');
 Route::meth('/administration/comments/delete/{id}', CommentController::class, 'delete');
 
+//contact
+Route::meth('/administration/contact/list', ContactController::class, 'list');
+Route::meth('/administration/contact/detail', ContactController::class, 'detail');
+Route::meth('/administration/contact/delete/{id}', ContactController::class, 'delete');
 
 //users
 Route::meth('/administration/user/index', SecurityController::class, 'index');
