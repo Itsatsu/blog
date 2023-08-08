@@ -40,7 +40,7 @@ class UserRepository
     public function create(User $user)
     {
         $roleRepository = new RoleRepository();
-        $role = $roleRepository->findIdByName('visitor');
+        $role = $roleRepository->findIdByName('user');
         $user->setRole($role);
         $user->setToken();
         $user->hashPassword($user->getPassword());
@@ -58,14 +58,16 @@ class UserRepository
         }
 
         $stmt->execute();
+
         $user->setId($this->pdo->lastInsertId());
+
         $stmt2 = $this->pdo->prepare('INSERT INTO role_has_user (role_id, user_id) VALUES (:role_id, :user_id)');
-        $params = [
-            ':role_id' => $user->getRole()->getId(),
+        $paramsRole = [
+            ':role_id' => $user->getRole(),
             ':user_id' => $user->getId()
         ];
-        foreach ($params as $paramName => $paramValue) {
-            $stmt->bindValue($paramName, $paramValue);
+        foreach ($paramsRole as $paramName => $paramValue) {
+            $stmt2->bindValue($paramName, $paramValue);
         }
         $stmt2->execute();
         return $user->getId();
