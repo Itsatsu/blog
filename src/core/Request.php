@@ -50,7 +50,8 @@ class Request
         $controller = new $controller();
 
         $method = $this->action;
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $requestMethod = isset($_SERVER['REQUEST_METHOD']) ?? $_SERVER['REQUEST_METHOD'];
+        if ($requestMethod === 'GET') {
               //  return $controller->$method($this->params>0 ?? $this->params);
 
             if (count($this->params) > 0) {

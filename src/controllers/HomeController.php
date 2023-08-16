@@ -15,6 +15,12 @@ use Validators\UserValidator;
 
 class HomeController extends Controller
 {
+
+
+    /**
+     * Affiche la page d'accueil.
+     *
+     */
     public function index()
     {
         $session = new Session();
@@ -23,11 +29,11 @@ class HomeController extends Controller
         $configurationRepository = new ConfigurationRepository();
         $info = $configurationRepository->findById($configurationRepository->findOne());
         $request = new HttpRequest();
-        if ($request->get('create') != null) {
+        if ($request->get('create') !== null) {
             $newContact = $request->get('create');
-            $contact = new Contact($newContact['firstname'],$newContact['lastname'], $newContact['email'], $newContact['message']);
+            $contact = new Contact($newContact['firstname'], $newContact['lastname'], $newContact['email'], $newContact['message']);
             $contactValidator = new ContactValidator($contact);
-            if ($contactValidator->validate()) {
+            if ($contactValidator->validate()){
                 $contactRepository = new ContactRepository();
                 $contactRepository->create($contact);
                 $session->setMessage('success', 'Votre message a bien été envoyé');
@@ -42,7 +48,6 @@ class HomeController extends Controller
 
             }
         }
-
 
 
         return $this->view('/home/index.html.twig', [
@@ -79,7 +84,7 @@ class HomeController extends Controller
 
             }
 
-        } elseif ($request->get('resetPassword') != null) {
+        } else if ($request->get('resetPassword') !== null) {
             $newUser = $request->get('resetPassword');
             $user->setToken();
             $userRepository->update($user);
@@ -102,17 +107,18 @@ class HomeController extends Controller
 
     }
 
+
     public function error404()
     {
         $session = new Session();
         $userRepository = new UserRepository();
         $user = $userRepository->findById($session->get('user'));
 
-        return $this->view('/404.html.twig',[
-        'message' => $session->getMessage(),
+        return $this->view('/404.html.twig', [
+            'message' => $session->getMessage(),
             'user' => $user,
         ]);
-    }
 
+    }
 
 }
