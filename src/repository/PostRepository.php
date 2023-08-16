@@ -48,9 +48,11 @@ class PostRepository
     public function update(Post $post)
     {
         $stmt = $this->pdo->prepare('UPDATE post SET categorie_id = :categorie_id, user_id = :user_id, title = :title, content = :content, subtitle = :subtitle, updated_at = :updated_at, is_validated = :is_validated WHERE id = :id');
+
+
         $params = [
             ':categorie_id' => $post->getCategorie(),
-            ':user_id' => $post->getUser(),
+            ':user_id' => $post->getUser()['id'],
             ':title' => $post->getTitle(),
             ':content' => $post->getContent(),
             ':subtitle' => $post->getSubtitle(),
