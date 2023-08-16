@@ -14,13 +14,15 @@ use Validators\CategorieValidator;
 
 class CategorieController extends Controller
 {
+
+    
     public function show()
     {
         $session = new Session();
         $userRepository = new UserRepository();
         $categorieRepository = new CategorieRepository();
         $user = $userRepository->findById($session->get('user'));
-        if ($user->getRole()['name'] != 'admin') {
+        if ($user->getRole()['name'] !== 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
@@ -31,12 +33,11 @@ class CategorieController extends Controller
             'message' => $session->getMessage(),
             'user' => $user,
         ]);
-
     }
+
 
     public function edit($params)
     {
-
         $session = new Session();
         $userRepository = new UserRepository();
         $user = $userRepository->findById($session->get('user'));
@@ -48,35 +49,33 @@ class CategorieController extends Controller
             header('Location: /categories');
         }
         $request = new HttpRequest();
-
         $categorieRepository = new CategorieRepository();
         $categorie = $categorieRepository->findById($params['id']);
-        if ($request->get('update') == null) {
+        if ($request->get('update') === null) {
             return $this->view('/categorie/edit.html.twig', [
                 'categorie' => $categorie,
                 'user' => $user,
             ]);
         }
+
         $categorie->setName($request->get('update')['name']);
         $categorieRepository->update($categorie);
         $session->setMessage('success', 'Votre catégorie a bien été modifié');
         header('Location: /administration/categorie');
-
-
     }
+
 
     public function new()
     {
         $session = new Session();
         $userRepository = new UserRepository();
         $user = $userRepository->findById($session->get('user'));
-        if ($user->getRole()['name'] != 'admin') {
+        if ($user->getRole()['name'] !== 'admin') {
             $session->setMessage('danger', 'Vous n\'avez pas accès à cette page');
             header('Location: /');
         }
         $request = new HttpRequest();
-
-        if ($request->get('create') == null) {
+        if ($request->get('create') === null) {
             return $this->view('/categorie/create_categorie.html.twig', [
                 'user' => $user,
             ]);
@@ -95,5 +94,4 @@ class CategorieController extends Controller
             'errors' => $categorieValidator->getErrors(),
         ]);
     }
-
 }
