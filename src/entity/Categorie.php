@@ -7,14 +7,16 @@ class Categorie
     private string $name;
     private int $id;
 
-    public function __construct($name, $id = null)
+    public function __construct(string $name, ?int $id = null)
     {
         $this->name = $name;
         $this->id = $id;
     }
 
     /**
-     * @return int
+     * Obtient l'ID de la catégorie.
+     *
+     * @return int L'ID de la catégorie.
      */
     public function getId(): int
     {
@@ -22,8 +24,10 @@ class Categorie
     }
 
     /**
+     * Définit l'ID de la catégorie.
      *
-     * @param int $id
+     * @param int $id Le nouvel ID de la catégorie.
+     * @return void
      */
     public function setId(int $id): void
     {
@@ -31,7 +35,9 @@ class Categorie
     }
 
     /**
-     * @return string
+     * Obtient le nom de la catégorie.
+     *
+     * @return string Le nom de la catégorie.
      */
     public function getName(): string
     {
@@ -39,10 +45,12 @@ class Categorie
     }
 
     /**
-     * @param string $name
+     * Définit le nom de la catégorie.
+     *
+     * @param string $name Le nouveau nom de la catégorie.
      * @return void
      */
-    public function setName( string $name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
