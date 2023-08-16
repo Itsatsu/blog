@@ -5,20 +5,16 @@
         max-width: 90% !important;
         margin-bottom: 30px;
         text-align: left;
-        
     }
     .contenu{
         width: 100% !important;
         justify-content: center;
         display: flex;
-
-        justify-content: space-between;
     }
     .post h2 {
         text-align: center;
     }
-
-    }
+}
     .commentaire{
         width: 85% ;
         background: #2B2C3E;
@@ -37,7 +33,6 @@
         padding-bottom: 50px ;
         margin-bottom: 70px;
     }
-    
     article{
         background: #2B2C3E;
         max-width: 94% ;
@@ -55,7 +50,6 @@
         justify-content: space-between;
         align-items: center;
     }
-
     .info{
         display: flex;
         justify-content: space-between;
@@ -71,5 +65,3 @@
         justify-content: center;
         align-items: center;
     }
-
-    

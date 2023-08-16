@@ -1,39 +1,29 @@
 @media (max-width: 900px) {
-
     article {
         background: #2B2C3E;
         width: 90% !important;
         margin-bottom: 30px;
-
     }
-
     .contenu {
         justify-content: center;
         display: flex;
         width: 100% !important;
-
     }
-
     .post h2 {
         text-align: center;
     }
-
 }
-
 .post h1 {
     text-align: center;
 }
-
 .post h2 {
     margin: 20px;
 }
-
 .post {
     padding-top: 20px;
     padding-bottom: 50px;
     margin-bottom: 70px;
 }
-
 article {
     background: #2B2C3E;
     width: 100%;
@@ -41,7 +31,6 @@ article {
     padding: 15px;
     border-radius: 16px;
 }
-
 .contenu {
     left: 18%;
     width: 80%;
@@ -49,10 +38,8 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     align-items: center;
 }
-
 form {
     display: flex;
     flex-direction: column;
