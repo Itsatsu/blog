@@ -31,7 +31,6 @@ class ContactController extends Controller
 
         $contactRepository = new ContactRepository();
         $contact = $contactRepository->findById($params['id']);
-        $request = new HttpRequest();
 
         return $this->view('/contact/detail.html.twig', [
             'user' => $user,

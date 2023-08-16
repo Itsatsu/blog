@@ -81,6 +81,6 @@ class ConfigurationRepository
         if (!$data) {
             return null;
         }
-        return $id = $data['id'];
+        return $data['id'];
     }
 }

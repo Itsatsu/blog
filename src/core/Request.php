@@ -11,7 +11,6 @@ class Request
     private $class;
     private $params = [];
     private $request;
-    private $data;
 
     public function __construct(string $path, string $class, string $action)
     {

@@ -25,7 +25,6 @@ class CommentController extends Controller
 
         $commentRepository = new CommentRepository();
         $comment = $commentRepository->findById($params['id']);
-        $request = new HttpRequest();
 
         return $this->view('/comment/detail.html.twig', [
             'user' => $user,
