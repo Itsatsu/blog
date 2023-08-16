@@ -17,14 +17,14 @@ class Comment
     /**
      * Constructeur de la classe Comment.
      *
-     * @param int $user L'ID de l'utilisateur associé au commentaire.
-     * @param int $post L'ID du post auquel le commentaire est lié.
-     * @param string $title Le titre du commentaire.
-     * @param string $content Le contenu du commentaire.
-     * @param mixed $created_at La date de création du commentaire.
-     * @param mixed $updated_at La date de mise à jour du commentaire.
-     * @param bool $is_validated Indique si le commentaire est validé ou non.
-     * @param int $id L'ID du commentaire.
+     * @param int   $user L'ID de l'utilisateur associé au commentaire.
+     * @param int   $post L'ID du post auquel le commentaire est lié.
+     * @param string    $title Le titre du commentaire.
+     * @param string    $content Le contenu du commentaire.
+     * @param mixed    $created_at La date de création du commentaire.
+     * @param mixed    $updated_at La date de mise à jour du commentaire.
+     * @param bool    $is_validated Indique si le commentaire est validé ou non.
+     * @param int    $id L'ID du commentaire.
      */
 
     public function __construct(

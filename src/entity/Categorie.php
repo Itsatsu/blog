@@ -9,8 +9,9 @@ class Categorie
 
     /**
      * Construit une nouvelle catégorie.
-     * @param string $name Le nom de la catégorie.
-     * @param int|null $id L'ID de la catégorie.
+     *
+     * @param string   $name Le nom de la catégorie.
+     * @param int|null   $id L'ID de la catégorie.
      */
     public function __construct(string $name, ?int $id= null)
     {
