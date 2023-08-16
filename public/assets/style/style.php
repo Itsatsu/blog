@@ -1,9 +1,7 @@
 <?php
-include "../../../src/config.php";
+require "../../../src/config.php";
 header("Content-type: text/css");
 
-$primaryColor = $primaryColor ?? "#5740EE";
-$secondaryColor = $secondaryColor ?? "#9740EE";
 ?>
 html{
 margin: 0;
