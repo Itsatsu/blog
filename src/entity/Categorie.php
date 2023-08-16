@@ -13,11 +13,14 @@ class Categorie
      * @param string   $name Le nom de la catégorie.
      * @param int|null   $id L'ID de la catégorie.
      */
-    public function __construct(string $name, ?int $id= null)
+
+    public function __construct(string $name, ?int $id=null)
     {
         $this->name = $name;
         $this->id = $id;
+
     }
+
 
     /**
      * Obtient l'ID de la catégorie.
