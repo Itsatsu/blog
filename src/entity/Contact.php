@@ -27,7 +27,11 @@ class Contact
         return $this->id;
     }
 
-    public function setId($id):void
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function setId(int $id):void
     {
         $this->id = $id;
     }
@@ -40,7 +44,11 @@ class Contact
         return $this->email;
     }
 
-    public function setEmail($email):void
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setEmail(string $email):void
     {
         $this->email= $email;
     }
@@ -53,7 +61,11 @@ class Contact
         return $this->message;
     }
 
-    public function setMessage($message):void
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function setMessage(string $message):void
     {
         $this->message= $message;
     }
@@ -66,7 +78,11 @@ class Contact
         return $this->lastname;
     }
 
-    public function setLastname($lastname):void
+    /**
+     * @param string $lastname
+     * @return void
+     */
+    public function setLastname(string $lastname):void
     {
         $this->lastname= $lastname;
     }
@@ -78,10 +94,12 @@ class Contact
     {
         return $this->firstname;
     }
-
-    public function setFirstname($firstname):void
+    /**
+     * @param string $firstname
+     * @return void
+     */
+    public function setFirstname(string $firstname):void
     {
         $this->firstname= $firstname;
     }
-
 }

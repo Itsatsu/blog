@@ -21,8 +21,11 @@ class Role
         return $this->id;
     }
 
-
-    public function setId($id): void
+    /**
+     * @param $id
+     * @return void
+     */
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -36,8 +39,11 @@ class Role
         return $this->name;
     }
 
-
-    public function setName($name): void
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

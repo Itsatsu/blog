@@ -21,7 +21,11 @@ class Categorie
         return $this->id;
     }
 
-    public function setId($id): void
+    /**
+     *
+     * @param int $id
+     */
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -34,7 +38,11 @@ class Categorie
         return $this->name;
     }
 
-    public function setName($name): void
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName( string $name): void
     {
         $this->name = $name;
     }

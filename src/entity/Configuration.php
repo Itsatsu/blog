@@ -3,17 +3,17 @@
 namespace entity;
 class Configuration
 {
-    private $id;
-    private $fullname;
-    private $title;
-    private $slogan;
-    private $color_primary;
-    private $color_secondary;
-    private $github;
-    private $linkedin;
-    private $x;
-    private $path;
-    private $file_name;
+    private int $id;
+    private string $fullname;
+    private string $title;
+    private string $slogan;
+    private string $color_primary;
+    private string $color_secondary;
+    private string $github;
+    private string $linkedin;
+    private string $x;
+    private string $path;
+    private string $file_name;
 
     public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $github = null, $linkedin = null, $x = null, $path = null, $file_name =null, $id = null)
     {
@@ -39,7 +39,11 @@ class Configuration
         return $this->id;
     }
 
-    public function setId($id): void
+    /**
+     * @return void
+     * @param  int  $id
+     */
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -52,7 +56,11 @@ class Configuration
         return $this->fullname;
     }
 
-    public function setFullname($fullname): void
+    /**
+     * @return void
+     * @param  string  $fullname
+     */
+    public function setFullname(string $fullname): void
     {
         $this->fullname = $fullname;
     }
@@ -65,7 +73,11 @@ class Configuration
         return $this->title;
     }
 
-    public function setTitle($title): void
+    /**
+     * @return void
+     * @param  string  $title
+     */
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -78,7 +90,11 @@ class Configuration
         return $this->slogan;
     }
 
-    public function setSlogan($slogan): void
+    /**
+     * @return void
+     * @param  string  $slogan
+     */
+    public function setSlogan(string $slogan): void
     {
         $this->slogan = $slogan;
     }
@@ -92,7 +108,11 @@ class Configuration
         return $this->color_primary;
     }
 
-    public function setColorPrimary($color_primary): void
+    /**
+     * @return void
+     * @param  string  $color_primary
+     */
+    public function setColorPrimary(string $color_primary): void
     {
         $this->color_primary = $color_primary;
     }
@@ -105,7 +125,11 @@ class Configuration
         return $this->color_secondary;
     }
 
-    public function setColorSecondary($color_secondary): void
+    /**
+     * @return void
+     * @param  string  $color_secondary
+     */
+    public function setColorSecondary(string $color_secondary): void
     {
         $this->color_secondary = $color_secondary;
     }
@@ -118,7 +142,11 @@ class Configuration
         return $this->path;
     }
 
-    public function setPath($path): void
+    /**
+     * @return void
+     * @param  string  $path
+     */
+    public function setPath( string $path): void
     {
         $this->path = $path;
     }
@@ -131,7 +159,11 @@ class Configuration
         return $this->file_name;
     }
 
-    public function setFileName($file_name): void
+    /**
+     * @return void
+     * @param  string  $file_name
+     */
+    public function setFileName( string $file_name): void
     {
         $this->file_name = $file_name;
     }
@@ -144,7 +176,11 @@ class Configuration
         return $this->github;
     }
 
-    public function setGithub($github): void
+    /**
+     * @return void
+     * @param  string  $github
+     */
+    public function setGithub(string $github): void
     {
         $this->github = $github;
     }
@@ -156,8 +192,11 @@ class Configuration
     {
         return $this->linkedin;
     }
-
-    public function setLinkedin($linkedin): void
+    /**
+     * @return void
+     * @param  string  $linkedin
+     */
+    public function setLinkedin(string $linkedin): void
     {
         $this->linkedin = $linkedin;
     }
@@ -170,11 +209,12 @@ class Configuration
         return $this->x;
     }
 
-    public function setX($x): void
+    /**
+     * @return void
+     * @param  string  $x
+     */
+    public function setX(string $x): void
     {
         $this->x = $x;
     }
-
-
-
 }

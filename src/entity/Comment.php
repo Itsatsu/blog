@@ -34,7 +34,11 @@ class Comment
         return $this->id;
     }
 
-    public function setId($id):void
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function setId(int $id):void
     {
         $this->id = $id;
     }
@@ -47,7 +51,11 @@ class Comment
         return $this->user;
     }
 
-    public function setUser($user):void
+    /**
+     * @param int $user
+     * @return void
+     */
+    public function setUser(int $user):void
     {
         $this->user = $user;
     }
@@ -60,7 +68,11 @@ class Comment
         return $this->post;
     }
 
-    public function setPost($post):void
+    /**
+     * @param int $post
+     * @return void
+     */
+    public function setPost(int $post):void
     {
         $this->post = $post;
     }
@@ -73,7 +85,11 @@ class Comment
         return $this->title;
     }
 
-    public function setTitle($title):void
+    /**
+     * @param string $title
+     * @return void
+     */
+    public function setTitle(string $title):void
     {
         $this->title = $title;
     }
@@ -86,26 +102,44 @@ class Comment
         return $this->content;
     }
 
-    public function setContent($content):void
+    /**
+     * @param string $content
+     * @return void
+     */
+    public function setContent(string $content):void
     {
         $this->content = $content;
     }
 
+    /**
+     * @return mixed
+     */
     public function getCreatedAt()
     {
         return $this->created_at;
     }
 
+    /**
+     * @param mixed $created_at
+     * @return void
+     */
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
     }
 
+    /**
+     * @return mixed|null
+     */
     public function getUpdatedAt()
     {
         return $this->updated_at;
     }
 
+    /**
+     * @param $updated_at
+     * @return void
+     */
     public function setUpdatedAt($updated_at)
     {
         $this->updated_at = $updated_at;
@@ -119,7 +153,11 @@ class Comment
         return $this->is_validated;
     }
 
-    public function setIsValidated($is_validated):void
+    /**
+     * @param bool $is_validated
+     * @return void
+     */
+    public function setIsValidated(bool $is_validated):void
     {
         $this->is_validated = $is_validated;
     }

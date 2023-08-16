@@ -9,8 +9,8 @@ class Post
     private string $title;
     private string $content;
     private string $subtitle;
-    private $created_at;
-    private $updated_at;
+    private mixed $created_at;
+    private mixed $updated_at;
     private bool $is_validated;
     private int $id;
 
@@ -35,7 +35,11 @@ class Post
         return $this->id;
     }
 
-    public function setId($id): void
+    /**
+     *@return void
+     * @param int $id
+     */
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -48,8 +52,11 @@ class Post
         return $this->categorie;
     }
 
-
-    public function setCategorie($categorie): void
+    /**
+     * @param int $categorie
+     * @return void
+     */
+    public function setCategorie(int $categorie): void
     {
         $this->categorie = $categorie;
     }
@@ -62,7 +69,11 @@ class Post
         return $this->user;
     }
 
-    public function setUser($user): void
+    /**
+     *@param int $user
+     * @return void
+     */
+    public function setUser(int $user): void
     {
         $this->user = $user;
     }
@@ -75,7 +86,11 @@ class Post
         return $this->title;
     }
 
-    public function setTitle($title): void
+    /**
+     * @param string $title
+     * @return void
+     */
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -88,8 +103,11 @@ class Post
         return $this->content;
     }
 
-
-    public function setContent($content): void
+    /**
+     * @param string $content
+     * @return void
+     */
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
@@ -102,27 +120,45 @@ class Post
         return $this->subtitle;
     }
 
-    public function setSubtitle($subtitle): void
+    /**
+     * @param string $subtitle
+     * @return void
+     */
+    public function setSubtitle(string $subtitle): void
     {
         $this->subtitle = $subtitle;
     }
 
-    public function getCreatedAt()
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt():mixed
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt($created_at): void
+    /**
+     * @param mixed $created_at
+     * @return void
+     */
+    public function setCreatedAt(mixed $created_at): void
     {
         $this->created_at = $created_at;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUpdatedAt()
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt($updated_at): void
+    /**
+     *@param mixed $updated_at
+     * @return void
+     */
+    public function setUpdatedAt(mixed $updated_at): void
     {
         $this->updated_at = $updated_at;
     }
@@ -135,7 +171,11 @@ class Post
         return $this->is_validated;
     }
 
-    public function setIsValidated($is_validated): void
+    /**
+     * @param bool $is_validated
+     * @return void
+     */
+    public function setIsValidated(bool $is_validated): void
     {
         $this->is_validated = $is_validated;
     }

@@ -34,7 +34,11 @@ class User
         return $this->id;
     }
 
-    public function setId($id):void
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function setId(int $id):void
     {
         $this->id = $id;
     }
@@ -47,7 +51,11 @@ class User
         return $this->email;
     }
 
-    public function setEmail($email):void
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setEmail(string $email):void
     {
         $this->email = $email;
     }
@@ -60,7 +68,11 @@ class User
         return $this->pseudo;
     }
 
-    public function setPseudo($pseudo):void
+    /**
+     * @param string $pseudo
+     * @return void
+     */
+    public function setPseudo(string $pseudo):void
     {
         $this->pseudo = $pseudo;
     }
@@ -73,17 +85,29 @@ class User
         return $this->country;
     }
 
-    public function setCountry($country):void
+    /**
+     * @param string $country
+     * @return void
+     */
+    public function setCountry(string $country):void
     {
         $this->country = $country;
     }
 
-    public function hashPassword($newPassword):void
+    /**
+     * @param string $newPassword
+     * @return void
+     */
+    public function hashPassword( string $newPassword):void
     {
         $this->password = password_hash($newPassword, PASSWORD_DEFAULT);
     }
 
-    public function setPassword($password):void
+    /**
+     * @param string $password
+     * @return void
+     */
+    public function setPassword(string $password):void
     {
         $this->password = $password;
     }
@@ -107,9 +131,10 @@ class User
     }
 
     /**
-     * @param $password_confirm
+     * @param string $password_confirm
+     * @return void
      */
-    public function setConfirmPassword($password_confirm):void
+    public function setConfirmPassword(string $password_confirm):void
     {
         $this->password_confirm = $password_confirm;
     }
@@ -130,6 +155,9 @@ class User
         return $this->token;
     }
 
+    /**
+     * @return void
+     */
     public function setToken():void
     {
         $this->token = sha1(uniqid());
@@ -143,22 +171,34 @@ class User
         return $this->is_active;
     }
 
+    /**
+     * @return void
+     */
     public function setIsActive():void
     {
         $this->is_active = true;
     }
 
+    /**
+     * @return void
+     */
     public function removeToken():void
     {
         $this->token = null;
     }
 
+    /**
+     * @return int
+     */
     public function getRole():int
     {
         return $this->role;
     }
-
-    public function setRole($role):void
+    /**
+     * @param int $role
+     * @return void
+     */
+    public function setRole(int $role):void
     {
         $this->role = $role;
     }
