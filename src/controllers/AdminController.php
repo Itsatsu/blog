@@ -51,8 +51,18 @@ class AdminController extends Controller
             ]);
         }
         $sendconfig = $request->get('update');
-        $cv = $_FILES['cv'];
-        $profil = $_FILES['profil'];
+        if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
+            $cv = $_FILES['cv'];
+
+        } else {
+            $cv = ['tmp_name' => ""];
+        }
+        if (isset($_FILES['profil']) && $_FILES['profil']['error'] === UPLOAD_ERR_OK) {
+            $profil = $_FILES['profil'];
+
+        } else {
+            $profil = ['tmp_name' => ""];
+        }
         $config = new Configuration($sendconfig['fullname'], $sendconfig['title'], $sendconfig['slogan'], $sendconfig['color_primary'], $sendconfig['color_secondary'], $sendconfig['github'], $sendconfig['linkedin'], $sendconfig['x']);
         $validator = new ConfigurationValidator($config);
         if (!$validator->validate()) {
