@@ -4,15 +4,15 @@ namespace entity;
 
 class User
 {
-    private $email;
-    private $pseudo;
-    private $country;
-    private $password;
-    private $password_confirm;
-    private $token;
-    private $is_active;
-    private $id;
-    private $role;
+    private string $email;
+    private string $pseudo;
+    private string $country;
+    private string $password;
+    private string $password_confirm;
+    private string $token;
+    private bool $is_active;
+    private int $id;
+    private int $role;
 
     public function __construct($email, $password= null , $pseudo = null, $country = null, $password_confirm = null,)
     {
@@ -26,112 +26,140 @@ class User
     }
 
 
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId():int
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
 
-    public function getEmail()
+    /**
+     * @return string
+     */
+    public function getEmail():string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail($email):void
     {
         $this->email = $email;
     }
 
-
-    public function getPseudo()
+    /**
+     * @return string
+     */
+    public function getPseudo():string
     {
         return $this->pseudo;
     }
 
-    public function setPseudo($pseudo)
+    public function setPseudo($pseudo):void
     {
         $this->pseudo = $pseudo;
     }
 
-    public function getCountry()
+    /**
+     * @return string
+     */
+    public function getCountry():string
     {
         return $this->country;
     }
 
-    public function setCountry($country)
+    public function setCountry($country):void
     {
         $this->country = $country;
     }
 
-    public function hashPassword($newPassword)
+    public function hashPassword($newPassword):void
     {
         $this->password = password_hash($newPassword, PASSWORD_DEFAULT);
     }
 
-    public function setPassword($password)
+    public function setPassword($password):void
     {
         $this->password = $password;
     }
 
-    public function verifyPassword($password)
+    /**
+     * @param $password
+     * @return bool
+     */
+    public function verifyPassword($password):bool
     {
 
         return password_verify($password, $this->password);
     }
 
-    public function getPassword()
+    /**
+     * @return string
+     */
+    public function getPassword():string
     {
         return $this->password;
     }
 
-    public function setConfirmPassword($password_confirm)
+    /**
+     * @param $password_confirm
+     */
+    public function setConfirmPassword($password_confirm):void
     {
         $this->password_confirm = $password_confirm;
     }
 
-    public function getConfirmPassword()
+    /**
+     * @return string
+     */
+    public function getConfirmPassword():string
     {
         return $this->password_confirm;
     }
 
-    public function getToken()
+    /**
+     * @return string
+     */
+    public function getToken():string
     {
         return $this->token;
     }
 
-    public function setToken()
+    public function setToken():void
     {
         $this->token = sha1(uniqid());
     }
 
-    public function getIsActive()
+    /**
+     * @return bool
+     */
+    public function getIsActive():bool
     {
         return $this->is_active;
     }
 
-    public function setIsActive()
+    public function setIsActive():void
     {
         $this->is_active = true;
     }
 
-    public function removeToken()
+    public function removeToken():void
     {
         $this->token = null;
     }
 
-    public function getRole()
+    public function getRole():int
     {
         return $this->role;
     }
 
-    public function setRole($role)
+    public function setRole($role):void
     {
         $this->role = $role;
     }
-
-
 }

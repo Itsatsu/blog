@@ -72,7 +72,7 @@ class AdminController extends Controller
             $fileName = $cv['name'];
             $path = "public/assets/uploads/cv.pdf";
         }
-        if (!$profil['tmp_name'] === "") {
+        if (!$profil['tmp_name'] === false) {
             move_uploaded_file($profil['tmp_name'], "public/assets/uploads/" . "profil.png");
         }
         $config->setPath($path);

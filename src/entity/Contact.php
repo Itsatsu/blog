@@ -5,11 +5,11 @@ namespace entity;
 class Contact
 {
 
-    private $id;
-    private $email;
-    private $message;
-    private $lastname;
-    private $firstname;
+    private int $id;
+    private string $email;
+    private string $message;
+    private string $lastname;
+    private string $firstname;
 
     public function __construct($firstname,$lastname,$email,$message, $id = null)
     {
@@ -19,53 +19,67 @@ class Contact
         $this->firstname = $firstname;
         $this->id = $id;
     }
-
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId():int
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
 
-    public function getEmail()
+    /**
+     * @return string
+     */
+    public function getEmail():string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail($email):void
     {
         $this->email= $email;
     }
 
-    public function getMessage()
+    /**
+     * @return string
+     */
+    public function getMessage():string
     {
         return $this->message;
     }
 
-    public function setMessage($message)
+    public function setMessage($message):void
     {
         $this->message= $message;
     }
 
-    public function getLastname()
+    /**
+     * @return string
+     */
+    public function getLastname():string
     {
         return $this->lastname;
     }
 
-    public function setLastname($lastname)
+    public function setLastname($lastname):void
     {
         $this->lastname= $lastname;
     }
 
-    public function getFirstname()
+    /**
+     * @return string
+     */
+    public function getFirstname():string
     {
         return $this->firstname;
     }
 
-    public function setFirstname($firstname)
+    public function setFirstname($firstname):void
     {
         $this->firstname= $firstname;
     }

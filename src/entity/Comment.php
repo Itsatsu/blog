@@ -5,14 +5,14 @@ namespace entity;
 class Comment
 {
 
-    private $user;
-    private $post;
-    private $title;
-    private $content;
+    private int $user;
+    private int $post;
+    private string $title;
+    private string $content;
     private $created_at;
     private $updated_at;
-    private $is_validated;
-    private $id;
+    private bool $is_validated;
+    private int $id;
 
     public function __construct( $user, $post, $title, $content, $created_at = null, $updated_at = null, $is_validated = null,  $id = null)
     {
@@ -26,52 +26,67 @@ class Comment
         $this->id = $id;
     }
 
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId():int
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
 
+    /**
+     * @return int
+     */
     public function getUser()
     {
         return $this->user;
     }
 
-    public function setUser($user)
+    public function setUser($user):void
     {
         $this->user = $user;
     }
 
-    public function getPost()
+    /**
+     * @return int
+     */
+    public function getPost():int
     {
         return $this->post;
     }
 
-    public function setPost($post)
+    public function setPost($post):void
     {
         $this->post = $post;
     }
 
-    public function getTitle()
+    /**
+     * @return string
+     */
+    public function getTitle():string
     {
         return $this->title;
     }
 
-    public function setTitle($title)
+    public function setTitle($title):void
     {
         $this->title = $title;
     }
 
-    public function getContent()
+    /**
+     * @return string
+     */
+    public function getContent():string
     {
         return $this->content;
     }
 
-    public function setContent($content)
+    public function setContent($content):void
     {
         $this->content = $content;
     }
@@ -96,19 +111,16 @@ class Comment
         $this->updated_at = $updated_at;
     }
 
-    public function getIsValidated()
+    /**
+     * @return bool
+     */
+    public function getIsValidated():bool
     {
         return $this->is_validated;
     }
 
-    public function setIsValidated($is_validated)
+    public function setIsValidated($is_validated):void
     {
         $this->is_validated = $is_validated;
     }
-
-
-
-
-
-
 }

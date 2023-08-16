@@ -30,6 +30,10 @@ class Configuration
         $this->x = $x;
 
     }
+
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -40,7 +44,10 @@ class Configuration
         $this->id = $id;
     }
 
-    public function getFullname()
+    /**
+     * @return string
+     */
+    public function getFullname():string
     {
         return $this->fullname;
     }
@@ -50,7 +57,10 @@ class Configuration
         $this->fullname = $fullname;
     }
 
-    public function getTitle()
+    /**
+     * @return string
+     */
+    public function getTitle():string
     {
         return $this->title;
     }
@@ -60,7 +70,10 @@ class Configuration
         $this->title = $title;
     }
 
-    public function getSlogan()
+    /**
+     * @return string
+     */
+    public function getSlogan():string
     {
         return $this->slogan;
     }
@@ -70,7 +83,11 @@ class Configuration
         $this->slogan = $slogan;
     }
 
-    public function getColorPrimary()
+
+    /**
+     * @return string
+     */
+    public function getColorPrimary():string
     {
         return $this->color_primary;
     }
@@ -80,7 +97,10 @@ class Configuration
         $this->color_primary = $color_primary;
     }
 
-    public function getColorSecondary()
+    /**
+     * @return string
+     */
+    public function getColorSecondary():string
     {
         return $this->color_secondary;
     }
@@ -90,7 +110,10 @@ class Configuration
         $this->color_secondary = $color_secondary;
     }
 
-    public function getPath()
+    /**
+     * @return string
+     */
+    public function getPath():string
     {
         return $this->path;
     }
@@ -100,7 +123,10 @@ class Configuration
         $this->path = $path;
     }
 
-    public function getFileName()
+    /**
+     * @return string
+     */
+    public function getFileName():string
     {
         return $this->file_name;
     }
@@ -110,7 +136,10 @@ class Configuration
         $this->file_name = $file_name;
     }
 
-    public function getGithub()
+    /**
+     * @return string
+     */
+    public function getGithub():string
     {
         return $this->github;
     }
@@ -120,7 +149,10 @@ class Configuration
         $this->github = $github;
     }
 
-    public function getLinkedin()
+    /**
+     * @return string
+     */
+    public function getLinkedin():string
     {
         return $this->linkedin;
     }
@@ -130,7 +162,10 @@ class Configuration
         $this->linkedin = $linkedin;
     }
 
-    public function getX()
+    /**
+     * @return string
+     */
+    public function getX():string
     {
         return $this->x;
     }

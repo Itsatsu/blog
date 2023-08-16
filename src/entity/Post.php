@@ -4,15 +4,15 @@ namespace entity;
 
 class Post
 {
-    private $categorie;
-    private $user;
-    private $title;
-    private $content;
-    private $subtitle;
+    private int $categorie;
+    private int $user;
+    private string $title;
+    private string $content;
+    private string $subtitle;
     private $created_at;
     private $updated_at;
-    private $is_validated;
-    private $id;
+    private bool $is_validated;
+    private int $id;
 
     public function __construct($categorie, $user, $title, $content, $subtitle, $created_at, $updated_at, $is_validated, $id = null)
     {
@@ -26,18 +26,24 @@ class Post
         $this->is_validated = $is_validated;
         $this->id = $id;
     }
-    public function getId()
+
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId($id): void
     {
         $this->id = $id;
     }
 
-
-    public function getCategorie()
+    /**
+     * @return int
+     */
+    public function getCategorie(): int
     {
         return $this->categorie;
     }
@@ -48,7 +54,10 @@ class Post
         $this->categorie = $categorie;
     }
 
-    public function getUser()
+    /**
+     * @return int
+     */
+    public function getUser(): int
     {
         return $this->user;
     }
@@ -58,19 +67,23 @@ class Post
         $this->user = $user;
     }
 
-    public function getTitle()
+    /**
+     * @return string
+     */
+    public function getTitle(): string
     {
         return $this->title;
     }
-
 
     public function setTitle($title): void
     {
         $this->title = $title;
     }
 
-
-    public function getContent()
+    /**
+     * @return string
+     */
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -81,7 +94,10 @@ class Post
         $this->content = $content;
     }
 
-    public function getSubtitle()
+    /**
+     * @return string
+     */
+    public function getSubtitle(): string
     {
         return $this->subtitle;
     }
@@ -111,7 +127,10 @@ class Post
         $this->updated_at = $updated_at;
     }
 
-    public function getIsValidated()
+    /**
+     * @return bool
+     */
+    public function getIsValidated(): bool
     {
         return $this->is_validated;
     }
@@ -120,8 +139,4 @@ class Post
     {
         $this->is_validated = $is_validated;
     }
-
-
-
-
 }

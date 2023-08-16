@@ -15,7 +15,7 @@ use Validators\CategorieValidator;
 class CategorieController extends Controller
 {
 
-    
+
     public function show()
     {
         $session = new Session();
