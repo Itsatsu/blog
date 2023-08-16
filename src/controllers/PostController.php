@@ -230,12 +230,4 @@ class PostController extends Controller
     }
 
 
-    public function show_all_edit_post()
-    {
-
-        return $this->view('/posts/show_all_edit_post.html.twig');
-
-    }
-
-
 }
