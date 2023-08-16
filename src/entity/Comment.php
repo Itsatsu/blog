@@ -9,12 +9,34 @@ class Comment
     private int $post;
     private string $title;
     private string $content;
-    private $created_at;
-    private $updated_at;
+    private mixed $created_at;
+    private mixed $updated_at;
     private bool $is_validated;
     private int $id;
 
-    public function __construct( $user, $post, $title, $content, $created_at = null, $updated_at = null, $is_validated = null,  $id = null)
+    /**
+     * Constructeur de la classe Comment.
+     *
+     * @param int $user L'ID de l'utilisateur associé au commentaire.
+     * @param int $post L'ID du post auquel le commentaire est lié.
+     * @param string $title Le titre du commentaire.
+     * @param string $content Le contenu du commentaire.
+     * @param mixed $created_at La date de création du commentaire.
+     * @param mixed $updated_at La date de mise à jour du commentaire.
+     * @param bool $is_validated Indique si le commentaire est validé ou non.
+     * @param int $id L'ID du commentaire.
+     */
+
+    public function __construct(
+        int $user,
+        int $post,
+        string $title,
+        string $content,
+        mixed $created_at = null,
+        mixed $updated_at = null,
+        bool $is_validated = null,
+        int $id = null
+    )
     {
         $this->user = $user;
         $this->post = $post;
@@ -27,40 +49,49 @@ class Comment
     }
 
     /**
-     * @return int
+     * Obtient l'ID du commentaire.
+     *
+     * @return int L'ID du commentaire.
      */
-    public function getId():int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * Définit l'ID du commentaire.
+     *
+     * @param int $id Le nouvel ID du commentaire.
      * @return void
      */
-    public function setId(int $id):void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return int
+     * Obtient l'ID de l'utilisateur associé au commentaire.
+     *
+     * @return int L'ID de l'utilisateur.
      */
-    public function getUser()
+    public function getUser(): int
     {
         return $this->user;
     }
 
     /**
-     * @param int $user
+     * Définit l'ID de l'utilisateur associé au commentaire.
+     *
+     * @param int $user Le nouvel ID de l'utilisateur.
      * @return void
      */
-    public function setUser(int $user):void
+    public function setUser(int $user): void
     {
         $this->user = $user;
     }
 
     /**
+     * Retourne l'ID du post auquel le commentaire est lié.
      * @return int
      */
     public function getPost():int
@@ -69,7 +100,8 @@ class Comment
     }
 
     /**
-     * @param int $post
+     * Définit l'ID du post auquel le commentaire est lié.
+     * @param int $post l'ID du post
      * @return void
      */
     public function setPost(int $post):void
@@ -78,6 +110,7 @@ class Comment
     }
 
     /**
+     * Recupère le titre du commentaire
      * @return string
      */
     public function getTitle():string
@@ -86,7 +119,8 @@ class Comment
     }
 
     /**
-     * @param string $title
+     * Définit le titre du commentaire
+     * @param string $title le titre du commentaire
      * @return void
      */
     public function setTitle(string $title):void
@@ -95,6 +129,7 @@ class Comment
     }
 
     /**
+     * Recupère le contenu du commentaire
      * @return string
      */
     public function getContent():string
@@ -103,7 +138,8 @@ class Comment
     }
 
     /**
-     * @param string $content
+     * Définit le contenu du commentaire
+     * @param string $content le contenu du commentaire
      * @return void
      */
     public function setContent(string $content):void
@@ -112,6 +148,7 @@ class Comment
     }
 
     /**
+     * Recupère la date de création du commentaire
      * @return mixed
      */
     public function getCreatedAt()
@@ -120,7 +157,8 @@ class Comment
     }
 
     /**
-     * @param mixed $created_at
+     * Définit la date de création du commentaire
+     * @param mixed $created_at la date de création du commentaire
      * @return void
      */
     public function setCreatedAt($created_at)
@@ -129,6 +167,7 @@ class Comment
     }
 
     /**
+     * Recupère la date de mise à jour du commentaire
      * @return mixed|null
      */
     public function getUpdatedAt()
@@ -137,7 +176,8 @@ class Comment
     }
 
     /**
-     * @param $updated_at
+     * Définit la date de mise à jour du commentaire
+     * @param mixed|null $updated_at la date de mise à jour du commentaire
      * @return void
      */
     public function setUpdatedAt($updated_at)
@@ -146,6 +186,7 @@ class Comment
     }
 
     /**
+     * Recupère si le commentaire est validé ou non
      * @return bool
      */
     public function getIsValidated():bool
@@ -154,7 +195,9 @@ class Comment
     }
 
     /**
-     * @param bool $is_validated
+     * Définit si le commentaire est validé ou non
+     *
+     * @param bool $is_validated validé ou non
      * @return void
      */
     public function setIsValidated(bool $is_validated):void

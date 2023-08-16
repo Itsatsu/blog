@@ -7,7 +7,12 @@ class Categorie
     private string $name;
     private int $id;
 
-    public function __construct(string $name, ?int $id = null)
+    /**
+     * Construit une nouvelle catégorie.
+     * @param string $name Le nom de la catégorie.
+     * @param int|null $id L'ID de la catégorie.
+     */
+    public function __construct(string $name, ?int $id= null)
     {
         $this->name = $name;
         $this->id = $id;
