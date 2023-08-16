@@ -1,6 +1,9 @@
 <?php
 include "../../../src/config.php";
 header("Content-type: text/css");
+
+$primaryColor = $primaryColor ?? "#5740EE";
+$secondaryColor = $secondaryColor ?? "#9740EE";
 ?>
 html{
 margin: 0;
@@ -11,11 +14,11 @@ background-color: #1E1D2B;
 }
 a{
 text-decoration: none;
-color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
+color: <?= $secondaryColor ?> ;
 font-size: 20px;
 }
 a:link{
-color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
+color: <?= $secondaryColor?> ;
 text-decoration: none;
 }
 p{
@@ -45,7 +48,7 @@ justify-content: center;
 display: none;
 }
 input[type="submit"]{
-background: linear-gradient(90deg, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0%, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%);
+background: linear-gradient(90deg, <?= $primaryColor; ?> 0%, <?= $secondaryColor; ?> 100%);
 height: 50px;
 width: 200px !important;
 }
@@ -116,7 +119,7 @@ height: 150px;
 margin: 10px;
 }
 input[type="submit"], button{
-background: linear-gradient(90deg, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%);
+background: linear-gradient(90deg, <?= $primaryColor; ?> 0, <?= $secondaryColor; ?> 100%);
 height: 50px;
 width: 60%;
 cursor: pointer;
@@ -152,11 +155,11 @@ border-radius: 0 36px 36px 0 ;
 
 }
 nav div{
-color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
+color: <?= $secondaryColor;  ?> ;
 margin-top: 20px;
 }
 nav a{
-color: <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> ;
+color: <?= $secondaryColor; ?> ;
 margin: 20px;
 text-align: center;
 }
@@ -174,7 +177,7 @@ align-items: center;
 margin: 0;
 }
 .elipse1{
-background: radial-gradient(81.25% 81.25% at 67.32% 18.75%, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%) ;
+background: radial-gradient(81.25% 81.25% at 67.32% 18.75%, <?= $primaryColor; ?> 0, <?= $secondaryColor; ?> 100%) ;
 border-radius: 50%;
 box-shadow: 0 0 100px 10px rgba(34, 215, 226, 0.3);
 transform: rotate(30deg);
@@ -186,7 +189,7 @@ top: -40px;
 z-index: -1;
 }
 .elipse2{
-background: radial-gradient(81.25% 81.25% at 67.32% 18.75%, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%);
+background: radial-gradient(81.25% 81.25% at 67.32% 18.75%, <?= $primaryColor;?> 0, <?= $secondaryColor; ?> 100%);
 border-radius: 100%;
 box-shadow: 0 0 100px 10px rgba(34, 215, 226, 0.3);
 transform: rotate(30deg);
@@ -198,7 +201,7 @@ top: 10%;
 z-index: -1;
 }
 .elipse3{
-background: radial-gradient(81.25% 81.25% at 67.32% 18.75%, <?php if ($primaryColor) echo $primaryColor; else echo "#5740EE"; ?> 0, <?php if ($secondaryColor) echo $secondaryColor; else echo "#9740EE"; ?> 100%) ;
+background: radial-gradient(81.25% 81.25% at 67.32% 18.75%, <?= $primaryColor; ?> 0, <?= $secondaryColor; ?> 100%) ;
 border-radius: 50%;
 border-radius: 100%;
 box-shadow: 0 0 100px 10px rgba(34, 215, 226, 0.3);
