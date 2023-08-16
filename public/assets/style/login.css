@@ -1,20 +1,21 @@
-@media (max-width: 900px) {
+@media (min-width: 0px) and (max-width: 900px) {
 .fond-gris{
-     width: 100%  !important;
+     width: 100%;
     left: 0%;
-    height: 350px !important;
+    height: 350px;
     text-align: center;
 
 }
 }
+@media (min-width: 901px) {
+    .fond-gris {
 
-.fond-gris{
-    
-    position: absolute;
-    width: 30%;
-    height:350px;
-    right: 5%;
-    top: 25%;
-    text-align: center;
+        position: absolute;
+        width: 30%;
+        height: 350px;
+        right: 5%;
+        top: 25%;
+        text-align: center;
 
+    }
 }
