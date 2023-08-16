@@ -12,19 +12,19 @@
 <h2>Connexion à la base de donnée </h2>
 <form method="post">
     <div style="display: flex; flex-direction: column;">
-    <label for="db_address">Adresse de la BDD: </label>
+    <label for="db_address" style="color: white;">Adresse de la BDD: </label>
     <input type="text" name="db_address" id="db_address" placeholder="Ex: localhost" required><br>
     </div>
     <div style="display: flex; flex-direction: column;">
-        <label for="db_port">Port de la BDD: </label>
+        <label for="db_port" style="color: white;">Port de la BDD: </label>
         <input type="text" name="db_port" id="db_port" placeholder="Ex: 3306" required><br>
     </div>
     <div style="display: flex; flex-direction: column;">
-        <label for="db_login">Login du compte: </label>
+        <label for="db_login" style="color: white;">Login du compte: </label>
         <input type="text" name="db_login" id="db_login"  placeholder="Ex: root" required><br>
     </div>
     <div style="display: flex; flex-direction: column;">
-        <label for="db_password">Mot de passe du compte: </label>
+        <label for="db_password" style="color: white;">Mot de passe du compte: </label>
         <input type="password" name="db_password" id="db_password"  placeholder="Ex: root" required><br>
     </div>
     <input type="submit" name="submit" value="Enregister les informations">

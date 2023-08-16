@@ -1,6 +1,9 @@
 <?php
 require_once "vendor/autoload.php";
 
+use Entity\Configuration;
+use Repository\ConfigurationRepository;
+use Repository\RoleRepository;
 use Repository\UserRepository;
 use Symfony\Component\Dotenv\Dotenv;
 use Entity\User;
@@ -17,34 +20,36 @@ if (isset($_POST['submit'])) {
 
     $admin = new User($_POST['email'], $_POST['password'], $_POST['pseudo'], $_POST['country']);
     $database = new Database();
-    $userRepository = new UserRepository();
-    $userRepository->create($admin);
     $sql = "INSERT INTO `role` (`name`) VALUES ('admin')";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $sql = "INSERT INTO `role` (`name`) VALUES ('user')";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $sql = "INSERT INTO `role_has_user` (`role_id`,`user_id`) VALUES ('1','1')";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $userRepository = new UserRepository();
+    $userRepository->create($admin);
+    $userRepository->update($admin);
+
+    $roleRepository = new RoleRepository();
+    $roleAdmin = $roleRepository->findIdByName('admin');
+    $role = $roleRepository->findById($roleAdmin);
+    $userRepository->updateRole($admin, $role);
+
     $primary_color = $_POST['color_primary'];
     $secondary_color = $_POST['color_secondary'];
-    $cv_tmp = $_FILES['cv']['tmp_name'];
-    $cv_content = file_get_contents($cv_tmp);
+    $cv = $_FILES['cv'];
+    $profil = $_FILES['profil'];
+    move_uploaded_file($cv['tmp_name'], "public/assets/uploads/" . "cv.pdf");
+    $fileName = $cv['name'];
+    $path = "public/assets/uploads/cv.pdf";
+    move_uploaded_file($profil['tmp_name'], "public/assets/uploads/" . "profil.png");
 
-    $sql = "INSERT INTO `configuration` (`title`, `fullname`, `slogan`, `color_primary`, `color_secondary`, `cv`) VALUES (:title, :fullname, :slogan, :color1, :color2, :cv)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":title", $_POST['title']);
-    $stmt->bindParam(":fullname", $_POST['fullname']);
-    $stmt->bindParam(":slogan", $_POST['slogan']);
-    $stmt->bindParam(":color1", $primary_color);
-    $stmt->bindParam(":color2", $secondary_color);
-    $stmt->bindParam(":cv", $cv_content, PDO::PARAM_LOB);
-    $stmt->execute();
+    $configRepository = new ConfigurationRepository();
+    $configuration = new Configuration($_POST['fullname'],$_POST['title'],$_POST['slogan'],$primary_color,$secondary_color,$_POST['github'],$_POST['linkedin'],$_POST['x'],$fileName,$path);
+    $configRepository->create($configuration);
 
-    $filename = ".env";
-    $file = fopen($filename, "a");
+    $env = ".env";
+    $file = fopen($env, "a");
     fwrite($file, "MAILER_DSN=smtp:".$_POST['smtpLogin'].":".$_POST['smtpPassword']."@".$_POST['smtpUrl'].":".$_POST['smtpPort']."\n");
     fwrite($file, "MAILER_LOGIN=".$_POST['smtpLogin']."\n");
     fwrite($file, "MAILER_PASSWORD=".$_POST['smtpPassword']."\n");
@@ -53,9 +58,9 @@ if (isset($_POST['submit'])) {
     fwrite($file, "MAILER_FROM=".$_POST['smtpAdresseMail']."\n");
     fclose($file);
 
-    unlink($setup);
-    unlink('setup.php');
-    unlink('installation.sql');
+    //unlink($setup);
+    //unlink('setup.php');
+    //unlink('installation.sql');
     header('Location:/');
 }
 
@@ -81,6 +86,18 @@ if (isset($_POST['submit'])) {
     <div style="display: flex; flex-direction: column;">
         <label for="slogan">Slogan: </label>
         <input type="text" name="slogan" id="slogan" placeholder="Ex: Le meilleur forum" required><br>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <label for="github">Lien github: </label>
+        <input type="text" name="github" id="github"  placeholder="Ex: https://github" ><br>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <label for="fullname">Lien linkedin</label>
+        <input type="text" name="linkedin" id="linkedin"  placeholder="Ex: https://linkedin"><br>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <label for="fullname">Lien X: </label>
+        <input type="text" name="x" id="x"  placeholder="Ex: https://x" ><br>
     </div>
     <div style="display: flex; flex-direction: column;">
         <label for="fullname">Prenom et Nom: </label>
@@ -115,6 +132,11 @@ if (isset($_POST['submit'])) {
         <label for="cv">Votre cv au format PDF: </label>
         <input type="file" id="cv" name="cv" accept="application/pdf" required><br>
     </div>
+    <div style="display: flex; flex-direction: column;">
+        <label for="cv">Votre logo au format png: </label>
+        <input type="file" id="profil" name="profil" accept=" image/png" required>
+    </div>
+
     <h3>SMTP</h3>
     <div style="display: flex; flex-direction: column;">
         <label for="smtpLogin">login smtp:</label>

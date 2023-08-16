@@ -18,7 +18,7 @@ class ConfigurationRepository
     public function create(Configuration $configuration)
     {
         $stmt = $this->pdo->prepare('INSERT INTO configuration (fullname, title, slogan, color_primary, color_secondary, github, linkedin, x, path, file_name) 
-                                            VALUES (:fullname, :title, :slogan, :color_primary, :color_secondary, :github, :linkedin, :x :path, :filename)');
+                                            VALUES (:fullname, :title, :slogan, :color_primary, :color_secondary, :github, :linkedin, :x ,:path, :filename)');
           $params = [
             ':fullname' => $configuration->getFullname(),
             ':title' => $configuration->getTitle(),
