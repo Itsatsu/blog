@@ -1,18 +1,19 @@
-@media (max-width: 900px) {
+@media (min-width: 0) and (max-width: 900px){
 .fond-gris{
-    width: 100%  !important;
-    left: 0%;
-    height: 550px !important;
+    width: 100%;
+    left: 0;
+    height: 550px;
     text-align: center;
+    }}
+@media (min-width: 901px) {
+    .fond-gris {
+        position: absolute;
+        width: 30%;
+        height: 550px;
+        right: 5%;
+        top: 25%;
+        text-align: center;
     }
-}
-.fond-gris{
-    position: absolute;
-    width: 30%;
-    height:550px;
-    right: 5%;
-    top: 25%;
-    text-align: center;
 }
 a:link{
     color: #06F2B0 ;
