@@ -1,23 +1,39 @@
-@media (max-width: 900px) {
+@media (min-width: 0) and (max-width: 900px){
     article {
         background: #2B2C3E;
-        width: 90% !important;
+        width: 90%;
         margin-bottom: 30px;
     }
     .contenu {
         justify-content: center;
         display: flex;
-        width: 100% !important;
+        width: 100%
     }
     .post h2 {
         text-align: center;
-    }
+    }}
+
+@media (min-width: 901px){
+.post h2 {
+    margin: 20px;
 }
+.contenu {
+    left: 18%;
+    width: 80%;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}}
 .post h1 {
     text-align: center;
 }
-.post h2 {
-    margin: 20px;
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .post {
     padding-top: 20px;
@@ -31,20 +47,4 @@ article {
     padding: 15px;
     border-radius: 16px;
 }
-.contenu {
-    left: 18%;
-    width: 80%;
-    padding-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
     

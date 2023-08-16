@@ -1,4 +1,4 @@
-@media (min-width: 0) and (max-width: 900px) {
+@media (min-width: 0) and (max-width: 900px){
     article{
         background: #2B2C3E;
         width: 90%;
@@ -20,7 +20,7 @@
         width: 100% ;
     }
 }
-@media (min-width: 901px) {
+@media (min-width: 901px){
     article {
         background: #2B2C3E;
         max-width: 90%;
