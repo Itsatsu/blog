@@ -18,9 +18,6 @@ class ConfigurationValidator
     public function validate()
     {
 
-        $configurationRepository = new ConfigurationRepository();
-
-
         if (strlen($this->configuration->getFullname()) < 3 || strlen($this->configuration->getFullname()) > 50) {
             $this->addError('danger', "Le nom de la catégorie est obligatoire et doit faire entre 3 et 50 caractères.");
         }

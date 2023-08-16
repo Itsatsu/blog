@@ -18,7 +18,6 @@ class RoleValidator
     public function validate()
     {
 
-        $postRepository = new RoleRepository();
         if (strlen($this->role->getName()) < 3 || strlen($this->role->getName()) > 50) {
             $this->addError('danger', "Le nom du role est obligatoire et doit faire entre 3 et 50 caractères.");
         }

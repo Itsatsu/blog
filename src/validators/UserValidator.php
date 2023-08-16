@@ -78,8 +78,6 @@ class UserValidator
 
     public function validateUpdate()
     {
-        $userRepository = new UserRepository();
-
 
         if (empty($this->user->getEmail())) {
             $this->addError('danger', "L'email est obligatoire.");

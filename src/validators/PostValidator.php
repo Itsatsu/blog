@@ -17,7 +17,6 @@ class PostValidator
     public function validate()
     {
 
-        $postRepository = new PostRepository();
         if (empty($this->post->getCategorie())) {
             $this->addError('danger', "La catégorie est obligatoire.");
         }
