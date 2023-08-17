@@ -2,8 +2,8 @@
 
 namespace Core;
 
-use Core\Request;
-use Core\Session;
+
+
 class Route
 {
     private static $request;
