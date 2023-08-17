@@ -100,7 +100,6 @@ class SecurityController extends Controller
         $userRepository->update($user);
         $session->setMessage('success', 'Votre compte a bien été Activé. Vous pouvez vous connecter.');
         header('Location:/login');
-        exit();
     }
 
     public function resetPassword($params)
