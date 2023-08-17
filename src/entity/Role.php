@@ -5,7 +5,7 @@ namespace entity;
 class Role
 {
     private string$name;
-    private int $id;
+    private ?int $id;
 
     public function __construct($name, $id = null)
     {

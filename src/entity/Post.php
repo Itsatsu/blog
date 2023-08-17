@@ -5,14 +5,14 @@ namespace entity;
 class Post
 {
     private int $categorie;
-    private int $user;
+    private mixed $user;
     private string $title;
     private string $content;
     private string $subtitle;
     private mixed $created_at;
     private mixed $updated_at;
-    private bool $is_validated;
-    private int $id;
+    private mixed $is_validated;
+    private ?int $id;
 
     public function __construct($categorie, $user, $title, $content, $subtitle, $created_at, $updated_at, $is_validated, $id = null)
     {
@@ -28,16 +28,16 @@ class Post
     }
 
     /**
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
      *@return void
-     * @param int $id
+     * @param ?int $id
      */
     public function setId(int $id): void
     {
@@ -62,18 +62,18 @@ class Post
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getUser(): int
+    public function getUser(): mixed
     {
         return $this->user;
     }
 
     /**
-     *@param int $user
+     *@param  mixed $user
      * @return void
      */
-    public function setUser(int $user): void
+    public function setUser(mixed $user): void
     {
         $this->user = $user;
     }
@@ -164,18 +164,18 @@ class Post
     }
 
     /**
-     * @return bool
+     * @return mixed
      */
-    public function getIsValidated(): bool
+    public function getIsValidated(): mixed
     {
         return $this->is_validated;
     }
 
     /**
-     * @param bool $is_validated
+     * @param mixed $is_validated
      * @return void
      */
-    public function setIsValidated(bool $is_validated): void
+    public function setIsValidated(mixed $is_validated): void
     {
         $this->is_validated = $is_validated;
     }

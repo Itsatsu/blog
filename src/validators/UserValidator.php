@@ -52,20 +52,19 @@ class UserValidator
             $this->addError('danger', "L'email est obligatoire.");
         }
         $user = $userRepository->findByEmail($this->user[0]);
-
         if ( $user === null) {
             $this->addError('danger', "L'email ou le mot de passe est incorrect.");
         }
 
-        if (empty($this->user[1])) {
+        else if (empty($this->user[1])) {
             $this->addError('danger', 'Le mot de passe est obligatoire.');
-        }
-
-        if ($user->verifyPassword($this->user[1]) !== true) {
+        } else if ($user->verifyPassword($this->user[1]) !== true) {
             $this->addError('danger', "L'email ou le mot de passe est incorrect.");
         }
 
-        if($user->getIsActive() === false){
+        else if ($user->getIsActive() === null) {
+            $this->addError('danger', "Votre compte n'est pas activé.");
+        }else if($user->getIsActive() === false){
             $this->addError('danger', "Votre compte n'est pas activé.");
         }
 

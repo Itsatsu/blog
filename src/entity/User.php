@@ -5,24 +5,22 @@ namespace entity;
 class User
 {
     private string $email;
-    private string $pseudo;
-    private string $country;
-    private string $password;
-    private string $password_confirm;
-    private string $token;
-    private bool $is_active;
-    private int $id;
-    private int $role;
+    private ?string $pseudo;
+    private ?string $country;
+    private ?string $password;
+    private ?string $password_confirm;
+    private ?string $token;
+    private $is_active;
+    private ?int $id;
+    private mixed $role;
 
-    public function __construct($email, $password= null , $pseudo = null, $country = null, $password_confirm = null,)
+    public function __construct($email, ?string $password= null , ?string $pseudo = null, ?string $country = null, ?string $password_confirm = null,)
     {
         $this->email = $email;
         $this->password = $password;
-
         $this->pseudo = $pseudo;
         $this->country = $country;
         $this->password_confirm = $password_confirm;
-
     }
 
 
@@ -163,6 +161,11 @@ class User
         $this->token = sha1(uniqid());
     }
 
+    public function setAddToken($token):void
+    {
+        $this->token = $token;
+    }
+
     /**
      * @return bool
      */
@@ -182,23 +185,31 @@ class User
     /**
      * @return void
      */
+    public function addIsActive($isActive):void
+    {
+        $this->is_active = $isActive;
+    }
+
+    /**
+     * @return void
+     */
     public function removeToken():void
     {
         $this->token = null;
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getRole():int
+    public function getRole():mixed
     {
         return $this->role;
     }
     /**
-     * @param int $role
+     *
      * @return void
      */
-    public function setRole(int $role):void
+    public function setRole($role):void
     {
         $this->role = $role;
     }

@@ -107,7 +107,6 @@ class PostController extends Controller
         $post->setContent($sendPost['content']);
         $post->setCategorie($sendPost['categorie']);
         $post->setUser($user->getId());
-
         $postValidator = new PostValidator($post);
         if (!$postValidator->validate()) {
 
@@ -197,6 +196,7 @@ class PostController extends Controller
         }
         if (isset($params['id'])) {
             $post = $postRepository->findById($params['id']);
+            $post->setUser($post->getUser()['id']);
             $post->setIsValidated(1);
             $time = new DateTime();
             $post->setUpdatedAt($time->format('Y-m-d H:i:s'));
@@ -213,7 +213,7 @@ class PostController extends Controller
         $session = new Session();
         $userRepository = new UserRepository();
         $postRepository = new PostRepository();
-
+        $commentRepository = new CommentRepository();
         $user = $userRepository->findById($session->get('user'));
 
         if ($user->getRole()['name'] != 'admin') {
@@ -222,6 +222,20 @@ class PostController extends Controller
         }
         if (isset($params['id'])) {
             $post = $postRepository->findById($params['id']);
+            $comments1 = $commentRepository->findLastCommentOfPost($post->getId(),0);
+            $comments2 = $commentRepository->findLastCommentOfPost($post->getId());
+            if ($comments1 !==  null  && $comments2 !== null) {
+                $comments = array_merge($comments1, $comments2);
+            } elseif ($comments1 !== null) {
+                $comments = $comments1;
+            } elseif ($comments2 !== null) {
+                $comments = $comments2;
+            }
+            if($comments != null) {
+                foreach ($comments as $comment) {
+                    $commentRepository->delete($comment);
+                }
+            }
             $postRepository->delete($post);
             $session->setMessage('success', 'L\'article a bien été supprimé');
             header('Location: /administration/posts/validation_index');

@@ -3,17 +3,17 @@
 namespace entity;
 class Configuration
 {
-    private int $id;
+    private ?int $id;
     private string $fullname;
     private string $title;
     private string $slogan;
     private string $color_primary;
     private string $color_secondary;
-    private string $github;
-    private string $linkedin;
-    private string $x;
-    private string $path;
-    private string $file_name;
+    private mixed $github;
+    private mixed $linkedin;
+    private mixed $x;
+    private mixed $path;
+    private mixed $file_name;
 
     public function __construct($fullname, $title, $slogan, $color_primary, $color_secondary, $github = null, $linkedin = null, $x = null, $path = null, $file_name =null, $id = null)
     {
@@ -32,18 +32,18 @@ class Configuration
     }
 
     /**
-     * @return int
+     * @return ?int
      */
-    public function getId()
+    public function getId():?int
     {
         return $this->id;
     }
 
     /**
      * @return void
-     * @param  int  $id
+     * @param  ?int  $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
@@ -135,33 +135,33 @@ class Configuration
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getPath():string
+    public function getPath():mixed
     {
         return $this->path;
     }
 
     /**
      * @return void
-     * @param  string  $path
+     * @param  mixed  $path
      */
-    public function setPath( string $path): void
+    public function setPath( mixed $path): void
     {
         $this->path = $path;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getFileName():string
+    public function getFileName():mixed
     {
         return $this->file_name;
     }
 
     /**
      * @return void
-     * @param  string  $file_name
+     * @param  mixed  $file_name
      */
     public function setFileName( string $file_name): void
     {
@@ -169,16 +169,16 @@ class Configuration
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getGithub():string
+    public function getGithub():mixed
     {
         return $this->github;
     }
 
     /**
      * @return void
-     * @param  string  $github
+     * @param  mixed  $github
      */
     public function setGithub(string $github): void
     {
@@ -186,32 +186,32 @@ class Configuration
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getLinkedin():string
+    public function getLinkedin():mixed
     {
         return $this->linkedin;
     }
     /**
      * @return void
-     * @param  string  $linkedin
+     * @param  mixed  $linkedin
      */
-    public function setLinkedin(string $linkedin): void
+    public function setLinkedin(mixed $linkedin): void
     {
         $this->linkedin = $linkedin;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getX():string
+    public function getX():mixed
     {
         return $this->x;
     }
 
     /**
      * @return void
-     * @param  string  $x
+     * @param  mixed  $x
      */
     public function setX(string $x): void
     {

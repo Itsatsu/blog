@@ -5,37 +5,37 @@ namespace entity;
 class Comment
 {
 
-    private int $user;
+    private mixed $user;
     private int $post;
     private string $title;
     private string $content;
     private mixed $created_at;
     private mixed $updated_at;
-    private bool $is_validated;
-    private int $id;
+    private mixed $is_validated;
+    private ?int $id;
 
     /**
      * Constructeur de la classe Comment.
      *
-     * @param int   $user L'ID de l'utilisateur associé au commentaire.
+     * @param mixed   $user L'ID de l'utilisateur associé au commentaire.
      * @param int   $post L'ID du post auquel le commentaire est lié.
      * @param string    $title Le titre du commentaire.
      * @param string    $content Le contenu du commentaire.
      * @param mixed    $created_at La date de création du commentaire.
      * @param mixed    $updated_at La date de mise à jour du commentaire.
-     * @param bool    $is_validated Indique si le commentaire est validé ou non.
-     * @param int    $id L'ID du commentaire.
+     * @param mixed    $is_validated Indique si le commentaire est validé ou non.
+     * @param ?int    $id L'ID du commentaire.
      */
 
     public function __construct(
-        int $user,
+        mixed $user,
         int $post,
         string $title,
         string $content,
         mixed $created_at = null,
         mixed $updated_at = null,
-        bool $is_validated = null,
-        int $id = null
+        mixed $is_validated = null,
+        ?int $id = null
     )
     {
         $this->user = $user;
@@ -51,9 +51,9 @@ class Comment
     /**
      * Obtient l'ID du commentaire.
      *
-     * @return int L'ID du commentaire.
+     * @return ?int L'ID du commentaire.
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -72,9 +72,9 @@ class Comment
     /**
      * Obtient l'ID de l'utilisateur associé au commentaire.
      *
-     * @return int L'ID de l'utilisateur.
+     * @return mixed L'ID de l'utilisateur.
      */
-    public function getUser(): int
+    public function getUser(): mixed
     {
         return $this->user;
     }
@@ -82,10 +82,10 @@ class Comment
     /**
      * Définit l'ID de l'utilisateur associé au commentaire.
      *
-     * @param int $user Le nouvel ID de l'utilisateur.
+     * @param mixed $user Le nouvel ID de l'utilisateur.
      * @return void
      */
-    public function setUser(int $user): void
+    public function setUser(mixed $user): void
     {
         $this->user = $user;
     }
@@ -187,9 +187,9 @@ class Comment
 
     /**
      * Recupère si le commentaire est validé ou non
-     * @return bool
+     * @return mixed
      */
-    public function getIsValidated():bool
+    public function getIsValidated():mixed
     {
         return $this->is_validated;
     }
@@ -197,10 +197,10 @@ class Comment
     /**
      * Définit si le commentaire est validé ou non
      *
-     * @param bool $is_validated validé ou non
+     * @param mixed $is_validated validé ou non
      * @return void
      */
-    public function setIsValidated(bool $is_validated):void
+    public function setIsValidated(mixed $is_validated):void
     {
         $this->is_validated = $is_validated;
     }

@@ -115,6 +115,7 @@ class CommentController extends Controller
             header('Location: /administration/comments/validation_index');
         }
         $comment = $commentRepository->findById($params['id']);
+        $comment->setUser($comment->getUser()['id']);
         $comment->setIsValidated(1);
         $time = new DateTime();
         $comment->setUpdatedAt($time->format('Y-m-d H:i:s'));

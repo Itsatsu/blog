@@ -22,12 +22,12 @@ class SecurityController extends Controller
                 'message' => $session->getMessage(),
             ]);
         }
+
         $connection = $request->get('connection');
         $user = [
             $connection['email'],
             $connection['password']
         ];
-
         $userValidator = new UserValidator($user);
         if (!$userValidator->validateLogin()) {
             return $this->view('/security/login.html.twig', [

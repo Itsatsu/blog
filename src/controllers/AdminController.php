@@ -63,8 +63,10 @@ class AdminController extends Controller
         } else {
             $profil = ['tmp_name' => ""];
         }
+
         $config = new Configuration($sendconfig['fullname'], $sendconfig['title'], $sendconfig['slogan'], $sendconfig['color_primary'], $sendconfig['color_secondary'], $sendconfig['github'], $sendconfig['linkedin'], $sendconfig['x']);
         $validator = new ConfigurationValidator($config);
+
         if (!$validator->validate()) {
             return $this->view('/admin/edit_configuration.html.twig', [
                 'message' => $session->getMessage(),
@@ -85,6 +87,7 @@ class AdminController extends Controller
         if (!$profil['tmp_name'] === false) {
             move_uploaded_file($profil['tmp_name'], "public/assets/uploads/" . "profil.png");
         }
+
         $config->setPath($path);
         $config->setFileName($fileName);
         $config->setId($id);

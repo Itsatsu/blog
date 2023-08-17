@@ -29,6 +29,8 @@ class UserRepository
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $user = new User($row['email'], $row['pseudo'], $row['country']);
             $user->setId($row['id']);
+            $user->setAddToken($row['token']);
+            $user->addIsActive($row['is_active']);
             $role = $this->roleRepository->findRoleByUser($row['id']);
 
             $user->setRole($role);
@@ -115,6 +117,7 @@ class UserRepository
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
+        $user->addIsActive($data['is_active']);
 
         $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = :user_id');
         $user_id = $user->getId();
@@ -142,7 +145,8 @@ class UserRepository
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
-
+        $user->setAddToken($data['token']);
+        $user->addIsActive($data['is_active']);
         $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = :user_id');
         $user_id = $user->getId();
         $stmt2->bindParam(':user_id', $user_id);
@@ -182,7 +186,8 @@ class UserRepository
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
-
+        $user->setAddToken($data['token']);
+        $user->addIsActive($data['is_active']);
         $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = :user_id');
         $user_id = $user->getId();
         $stmt2->bindParam(':user_id', $user_id);

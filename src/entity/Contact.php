@@ -5,13 +5,13 @@ namespace entity;
 class Contact
 {
 
-    private int $id;
+    private ?int $id;
     private string $email;
     private string $message;
     private string $lastname;
     private string $firstname;
 
-    public function __construct($firstname,$lastname,$email,$message, $id = null)
+    public function __construct($firstname,$lastname,$email,$message, ?int $id = null)
     {
         $this->email = $email;
         $this->message = $message;

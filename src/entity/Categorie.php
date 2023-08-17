@@ -5,7 +5,7 @@ namespace entity;
 class Categorie
 {
     private string $name;
-    private int $id;
+    private ?int $id;
 
     /**
      * Construit une nouvelle catégorie.

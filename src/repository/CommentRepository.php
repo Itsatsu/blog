@@ -129,10 +129,11 @@ class CommentRepository
         return $comments;
     }
 
-    public function findLastCommentOfPost($id)
+    public function findLastCommentOfPost($id, $is_validated= 1)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM comment WHERE post_id = :post_id AND is_validated = 1 ORDER BY created_at DESC LIMIT 10 ');
+        $stmt = $this->pdo->prepare('SELECT * FROM comment WHERE post_id = :post_id AND is_validated = :is_validated ORDER BY created_at DESC LIMIT 10 ');
         $stmt->bindParam(':post_id', $id);
+        $stmt->bindParam(':is_validated', $is_validated);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (!$data) {
