@@ -222,16 +222,16 @@ class PostController extends Controller
         }
         if (isset($params['id'])) {
             $post = $postRepository->findById($params['id']);
-            $comments1 = $commentRepository->findLastCommentOfPost($post->getId(),0);
+            $comments1 = $commentRepository->findLastCommentOfPost($post->getId(), 0);
             $comments2 = $commentRepository->findLastCommentOfPost($post->getId());
-            if ($comments1 !==  null  && $comments2 !== null) {
+            if ($comments1 !== null && $comments2 !== null) {
                 $comments = array_merge($comments1, $comments2);
-            } elseif ($comments1 !== null) {
+            } else if ($comments1 !== null) {
                 $comments = $comments1;
-            } elseif ($comments2 !== null) {
+            } else if ($comments2 !== null) {
                 $comments = $comments2;
             }
-            if($comments != null) {
+            if ($comments !== null) {
                 foreach ($comments as $comment) {
                     $commentRepository->delete($comment);
                 }
