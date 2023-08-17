@@ -91,7 +91,7 @@ class HomeController extends Controller
             $mail = new Mail();
             $mail->send($user, 'Réinitialisation du mot de passe', '/mail/reset.html.twig', [
                     'user' => $user,
-                    'server' => $_SERVER['HTTP_HOST']
+                    'server' => filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING),
                 ]
             );
 
