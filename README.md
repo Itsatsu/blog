@@ -1,3 +1,6 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a491ef126ba445f9ba3e4c131542399d)](https://app.codacy.com/gh/Itsatsu/blog?utm_source=github.com&utm_medium=referral&utm_content=Itsatsu/blog&utm_campaign=Badge_Grade)
+
 README - Installation du Blog
 Prérequis
 Avant de commencer l'installation du blog, assurez-vous d'avoir les éléments suivants correctement configurés sur votre système :
