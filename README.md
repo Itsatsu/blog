@@ -1,12 +1,14 @@
 README - Installation du Blog
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bd2ecf206a354e9eb2d5a1f64eb74e23)](https://app.codacy.com/gh/Itsatsu/blog/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 Prérequis
 Avant de commencer l'installation du blog, assurez-vous d'avoir les éléments suivants correctement configurés sur votre système :
 
-Laragon : Assurez-vous d'avoir installé Laragon sur votre machine et d'avoir l'optioncréation des hote virtuelle automatique coché.
+LARAGON : Assurez-vous d'avoir installé Laragon sur votre machine et d'avoir l'optioncréation des hote virtuelle automatique coché.
 
-Base de données MySQL : Laragon inclut MySQL par défaut, mais veuillez vous assurer qu'aucune base de données portant le nom "blog" n'existe déjà dans votre instance MySQL.
+BASE DE DONNEE MySQL : Laragon inclut MySQL par défaut, mais veuillez vous assurer qu'aucune base de données portant le nom "blog" n'existe déjà dans votre instance MySQL.
 
-Service Mail : Je recommande l'utilisation de Mailtrap pour simuler l'envoi de courriers électroniques. Vous pouvez vous inscrire sur Mailtrap pour obtenir vos informations de configuration.
+SERVICE MAIL : Je recommande l'utilisation de Mailtrap pour simuler l'envoi de courriers électroniques. Vous pouvez vous inscrire sur Mailtrap pour obtenir vos informations de configuration.
 
 Installation
 Suivez ces étapes pour installer le blog sur votre système :
