@@ -108,12 +108,13 @@ class UserRepository
 
     public function findByToken(mixed $token)
     {
+
         $stmt = $this->pdo->prepare('SELECT * FROM user WHERE token = :token');
         $stmt->bindParam(':token', $token);
         $stmt->execute();
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$data) {
-            return null;
+         return null;
         }
         $user = new User($data['email'], $data['password'], $data['pseudo'], $data['country']);
         $user->setId($data['id']);
@@ -122,9 +123,9 @@ class UserRepository
         $stmt2 = $this->pdo->prepare('SELECT * FROM role_has_user WHERE user_id = :user_id');
         $user_id = $user->getId();
         $stmt2->bindParam(':user_id', $user_id);
-
-        $stmt3 = $this->pdo->prepare('SELECT * FROM role WHERE id = :id');
+        $stmt2->execute();
         $data2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $stmt3 = $this->pdo->prepare('SELECT * FROM role WHERE id = :id');
         $stmt3->bindParam(':id', $data2['role_id']);
         $stmt3->execute();
         $data3 = $stmt3->fetch(PDO::FETCH_ASSOC);

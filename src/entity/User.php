@@ -9,7 +9,7 @@ class User
     private ?string $country;
     private ?string $password;
     private ?string $password_confirm;
-    private ?string $token;
+    private mixed $token;
     private $is_active;
     private ?int $id;
     private mixed $role;
@@ -146,9 +146,9 @@ class User
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getToken():string
+    public function getToken():mixed
     {
         return $this->token;
     }
