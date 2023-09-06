@@ -26,13 +26,13 @@ Une fois le téléchargement terminé,
 Dans le répertoire www de Laragon décompressez le fichier ZIP a l'intérieur.
 Renommer le dossier en "blog".
 
-Étape 3 :Assurez-vous que Composer est installé
+Étape 3 :Assurez-vous que Composer est installé.
 Avant tout, assurez-vous que Composer est installé sur votre système.
-Si ce n'est pas le cas, vous pouvez le télécharger depuis getcomposer.org.
+Si ce n'est pas le cas, vous pouvez le télécharger depuis https://getcomposer.org .
 Installer Composer.
 
 Étape 4 : Cmd laragon
-Ouvrer le Terminal depuis larago et entrer la commande suivante:
+Ouvrer le Terminal depuis laragon et entrer la commande suivante:
 cd blog
 
 Puis cette commande:
